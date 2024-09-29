@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Lecture Notes for module MA-M375/M75">
+
+<title>8&nbsp; Global phase portrait – MA-M375/M75 Dynamical Systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./DS-Ch-07.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="8&nbsp; Global phase portrait – MA-M375/M75 Dynamical Systems">
+<meta property="og:description" content="Lecture Notes for module MA-M375/M75">
+<meta property="og:site_name" content="MA-M375/M75 Dynamical Systems">
+</head>
+
+<body class="nav-sidebar docked fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DS-Ch-05.html">Chapter 2: Two-dimensional dynamical systems</a></li><li class="breadcrumb-item"><a href="./DS-Ch-08.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Global phase portrait</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/attractors.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MA-M375/M75 Dynamical Systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 1: One-dimensional dynamical systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Differential Equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Phase portrait</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bifurcations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Two-dimensional dynamical systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">General ideas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Local phase portrait</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-08.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Global phase portrait</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DS-Ch-05.html">Chapter 2: Two-dimensional dynamical systems</a></li><li class="breadcrumb-item"><a href="./DS-Ch-08.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Global phase portrait</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Global phase portrait</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.1 General scheme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Let <span class="math inline">\(f,g:D\to{\mathbb{R}}\)</span>, <span class="math inline">\(D\subseteq{\mathbb{R}}^2\)</span> be smooth, and</li>
+</ul>
+<div class="highlight">
+<p><span id="eq-ds2a"><span class="math display">\[
+\begin{cases}
+x'=f(x,y),\\
+y'=g(x,y),
+\end{cases}
+\tag{8.1}\]</span></span></p>
+</div>
+<p>for <span class="math inline">\(t\in I\subseteq{\mathbb{R}}\)</span>, be such that, for each <span class="math inline">\(t_0\in I\)</span> and <span class="math inline">\((x(t_0),y(t_0))\in D\)</span>, (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) has a unique solution <span class="math inline">\((x(t),y(t))\in D\)</span> for <span class="math inline">\(t\in I\)</span>.</p>
+<ul>
+<li><p>The global phase portrait of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) shows the behaviour of all “typical” trajectories of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) over the whole domain <span class="math inline">\(D\)</span>.</p></li>
+<li><p>To get the global phase portrait, one should, firstly, describe (if possible) the local phase portraits around each of fixed points of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</p></li>
+<li><p>Recall that it is always possible for fixed points which are nodes, saddles, or spirals. For linear centres, however, a further analysis is needed (see below).</p></li>
+<li><p>Then one should sketch the trajectories connecting the neihgbourhoods of the fixed points, so that the “global” trajectories would reflect the revealed local phase portraits. Several tricks discussed below may help to do this in a non-contradictory way.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.2 Trajectories on straight lines
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>A vertical straight line <span class="math inline">\(x=a\)</span>, <span class="math inline">\(a\in{\mathbb{R}}\)</span> (on the phase space <span class="math inline">\({\mathbb{R}}^2\)</span>) contains trajectories of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) iff <span class="math display">\[
+\high{f(a,y)=0, \quad \text{for all } y\in{\mathbb{R}} \text{ s.t. } (a,y)\in D.}
+\]</span> In other words, the constant function <span class="math inline">\(x(t)=a\)</span> satisfies the first eqution in (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</p></li>
+<li><p>The phase portrait on the line <span class="math inline">\(x=a\)</span> is determined then from the <em>one-dimensional</em> dynamical system</p></li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+y'=g(a,y).
+\]</span></p>
+</div>
+<ul>
+<li>Similarly, a horizontal straight line <span class="math inline">\(y=b\)</span>, <span class="math inline">\(b\in{\mathbb{R}}\)</span>, contains trajectories of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) iff</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+g(x,b)=0, \quad \text{for all } x\in{\mathbb{R}} \text{ s.t. } (x,b)\in D.
+\]</span></p>
+</div>
+<p>In other words, the constant function <span class="math inline">\(y(t)=b\)</span> satisfies the second eqution in (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</p>
+<ul>
+<li>The phase portrait on the line <span class="math inline">\(y=b\)</span> is determined then from the <em>one-dimensional</em> dynamical system</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+x'=f(x,b).
+\]</span></p>
+</div>
+<ul>
+<li>Intersections of such vertical and horizontal lines are (some of) the fixed points of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.3 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span class="math display">\[
+\begin{cases}
+x'=2x-x^2,\\
+y'=-y+xy.
+\end{cases}
+\]</span> The fixed points are <span class="math inline">\(O(0,0)\)</span> and <span class="math inline">\(A(2,0)\)</span> (<strong>check!</strong>). The linearisation at <span class="math inline">\(O\)</span> has eigenvalues <span class="math inline">\(\lambda_1=2\color{red}&gt;0\)</span> and <span class="math inline">\(\lambda_2=-1\color{blue}&lt;0\)</span> (<strong>check!</strong>), hence <span class="math inline">\(O\)</span> is a <strong>saddle</strong> fixed point; and the corresponding eigenvectors are (<strong>check!</strong>) <span class="math inline">\(v_1=(1,0)^T\)</span> and <span class="math inline">\(v_2=(0,1)^T\)</span>. Therefore, the horizontal line <span class="math inline">\(y=0\)</span> is tangent to the manifold and the vertical line <span class="math inline">\(x=0\)</span> is tangent to the manifold <strong>around</strong> <span class="math inline">\(O\)</span>.</p>
+<p>The linearisation at <span class="math inline">\(A\)</span> is also a <strong>saddle</strong>, since (<strong>check!</strong>) the eigenvalues <span class="math inline">\(\lambda_1=-2\color{blue}&lt;0\)</span> and <span class="math inline">\(\lambda_2=1\color{red}&gt;0\)</span>; and the corresponding eigenvectors are <span class="math inline">\(v_1=(1,0)^T\)</span> and <span class="math inline">\(v_2=(0,1)^T\)</span>. Therefore, the same horizontal line <span class="math inline">\(y=0\)</span> is tangent now to the manifold, and the vertical line <span class="math inline">\(x=2\)</span> is tangent to the manifold <strong>around</strong> <span class="math inline">\(A\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-08_files/figure-html/tikz-56-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To extend the local phase portraits around <span class="math inline">\(O\)</span> and <span class="math inline">\(A\)</span> to the global one, we have to “join” disconnected trajectories. In general, it can eb done in different ways, however, here one can notice that <span class="math inline">\(x(t)\equiv0\)</span> and <span class="math inline">\(x(t)\equiv2\)</span> solve the first eqution, and <span class="math inline">\(y(t)\equiv 0\)</span> solves the second equation. Therefore, the vertical lines <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=2\)</span> and the horizontal line <span class="math inline">\(y=0\)</span> contain trajectories of the given system. In particular, the mentioned stable and unstable manifolds (locally around the fixed points) lie on these lines.</p>
+<p>On <span class="math inline">\(y=0\)</span>, the phase portrait is given by the first equation, there are three trajectories there, and <span class="math inline">\(x=0\)</span> is unstable and <span class="math inline">\(x=2\)</span> is stable there. Stress that the correspondin arrows <strong>should be agreed</strong> with the local phase portraits around <span class="math inline">\(O\)</span> and <span class="math inline">\(A\)</span>. On <span class="math inline">\(x=0\)</span>, the phase portrait is given by <span class="math inline">\(y'=-y\)</span>, and on <span class="math inline">\(x=2\)</span>, the phase portrait is given by <span class="math inline">\(y'=y\)</span>.</p>
+<p>SInce the trajectories do not intersect, we get the global phase portrait</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-08_files/figure-html/tikz-57-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.4 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For smooth <span class="math inline">\(f,g\)</span>, the solutions to (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) are continuous functions, which <strong>conrinuously</strong> depend on the initial conditions. Since each point inside <span class="math inline">\(D\)</span> may be an initial condition, two trajectories in a small region which does not contain fixed points should behave similarly. In particular, the hyperbola-like trajectories in the previous example will asymptotically convrge to the corresponding horizontal and vertical trajectories.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.5 Trajectories on straight lines (<em>cont.</em>)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A <strong>slanted</strong> straight line <span class="math inline">\(y=px+q\)</span>, <span class="math inline">\(p\neq0\)</span>, containes trajectories of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) if</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+\frac{y'}{x'}=p \quad \text{along this line}
+\]</span></p>
+</div>
+<p>(the slope of the direction vector remains constant there), i.e.&nbsp;if</p>
+<div class="highlight">
+<p><span class="math display">\[
+\frac{g(x,px+q)}{f(x,px+q)}=p
+\]</span></p>
+</div>
+<p>for all <span class="math inline">\(x\in{\mathbb{R}}\)</span> such that <span class="math inline">\((x,px+q)\in D\)</span>. (<strong>Remark:</strong> we will mostly have <span class="math inline">\(D={\mathbb{R}}^2\)</span>.)</p>
+<ul>
+<li>Such line often exists if two fixed points (nodes or saddles) have equal (or proportional) one of the main directions.</li>
+</ul>
+</div>
+</div>
+<div id="exa_trap" class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.6 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system</p>
+<div class="highlight">
+<p><span id="eq-trap"><span class="math display">\[
+\begin{cases}
+x'= x (6 - x + 2 y),\\
+y'= y (x-y - 4).
+\end{cases}
+\tag{8.2}\]</span></span></p>
+</div>
+<p>This system has four fixed points (<strong>check the following by yourself!</strong>):</p>
+<ul>
+<li><p><span class="math inline">\(O(0,0)\)</span> is a <strong>saddle</strong> point: <span class="math inline">\(\lambda_1=6\)</span>, <span class="math inline">\(\lambda_2=-4\)</span>, <span class="math inline">\({\color{red}v_1=(1,0)^T}\)</span>, <span class="math inline">\({\color{blue}v_2=(0,1)^T}\)</span>;</p></li>
+<li><p><span class="math inline">\(A(6,0)\)</span> is a <strong>saddle</strong> point: <span class="math inline">\(\lambda_1=-6\)</span>, <span class="math inline">\(\lambda_2=2\)</span>, <span class="math inline">\({\color{blue}v_1=(1,0)^T}\)</span>, <span class="math inline">\({\color{red}v_2=(3,2)^T}\)</span>;</p></li>
+<li><p><span class="math inline">\(B(0,-4)\)</span> is a <strong>saddle</strong> point: <span class="math inline">\(\lambda_1=4\)</span>, <span class="math inline">\(\lambda_2=-2\)</span>, <span class="math inline">\({\color{red}v_1=(0,1)^T}\)</span>, <span class="math inline">\({\color{blue}v_2=(3,2)^T}\)</span>;</p></li>
+<li><p><span class="math inline">\(C(2,-2)\)</span> is a <strong>linear centre</strong>: <span class="math inline">\(\lambda_1=2i\)</span>, <span class="math inline">\(\lambda_2=-2i\)</span>; hence, the phase portrait at <span class="math inline">\(C\)</span> <strong>requires further analysis</strong> (which we will consider later on).</p></li>
+</ul>
+<p>Next, <span class="math inline">\(x=0\)</span> and <span class="math inline">\(y=0\)</span> solve the first and second equations, respectively. Therefore, the coordinate axes contain trajectories: <span class="math inline">\(x=0\)</span> implies <span class="math inline">\(y'=-y(y+4)\)</span>, where <span class="math inline">\(y=0\)</span> is stable and <span class="math inline">\(y=-4\)</span> is unstable fixed points; similarly, <span class="math inline">\(y=0\)</span> implies <span class="math inline">\(x'=x(6-x)\)</span>, where <span class="math inline">\(x=0\)</span> is unstable and <span class="math inline">\(x=6\)</span> is stable fixed points. In particular, the (local) unstable manifold for <span class="math inline">\(O\)</span> and the stable manifold for <span class="math inline">\(A\)</span> lie on <span class="math inline">\(y=0\)</span> and the (local) stable manifold for <span class="math inline">\(O\)</span> and the unstable manifold for <span class="math inline">\(B\)</span> lie on <span class="math inline">\(x=0\)</span>.</p>
+<p>Also, we see that the other main directions for <span class="math inline">\(A\)</span> and for <span class="math inline">\(B\)</span> coinside. It gives a guess to try line <span class="math inline">\(AB\)</span>; its equation is <span class="math display">\[
+\frac{x-6}{0-6}=\frac{y-0}{-4-0}, \quad y=\frac23x - 4.
+\]</span> The slope <span class="math inline">\(\frac23\)</span> of <span class="math inline">\(AB\)</span> <strong>is the slope of the common main direction</strong> <span class="math inline">\((3,2)^T\)</span> of saddles at <span class="math inline">\(A\)</span> and at <span class="math inline">\(B\)</span>. Let <span class="math inline">\((x(t),y(t))\)</span> lie on <span class="math inline">\(AB\)</span>, i.e.&nbsp;<span class="math inline">\(y=\frac23x - 4\)</span>. Then <span class="math display">\[
+\begin{aligned}
+x'&amp;=x \bigl(6 - x + \frac43x - 8\bigr)=\frac13x(x-6),\\
+y'&amp;=\bigl(\frac23x - 4\bigr) \frac13x=\frac29x(x-6),
+\end{aligned}
+\]</span> and hence <span class="math display">\[
+\frac{y'}{x'}=\frac23.
+\]</span> Therefore, the line <span class="math inline">\(y=\frac23x - 4\)</span> contain trajectories. Next, on this line, by the above, <span class="math inline">\(x'&gt;0\)</span> and <span class="math inline">\(y'&gt;0\)</span> for <span class="math inline">\(x&lt;0\)</span> and for <span class="math inline">\(x&gt;6\)</span>, and <span class="math inline">\(x'&lt;0\)</span> and <span class="math inline">\(y'&lt;0\)</span> for <span class="math inline">\(x\in(0,6)\)</span>. This gives the phase portrain on the line. (Note that the arrows on the line <strong>should be agreed</strong> with the local phase portraits around <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.)</p>
+<p>Since the trajectories do not intersecr, the trangle <span class="math inline">\(OAB\)</span> is a “<strong>trap</strong>”: if <span class="math inline">\((x(t_0),y(t_0))\)</span> lies inside this triangle, then <span class="math inline">\((x(t),y(t))\)</span> will remain inside this triangle forever.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.7 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The phase picture on lines containing the sides of <span class="math inline">\(OAB\)</span> and the phase picture outside <span class="math inline">\(OAB\)</span> is now clear. Whether trajectories inside <span class="math inline">\(OAB\)</span> are spirals or cycles, we will discuss later on.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-08_files/figure-html/tikz-58-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.8 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><span class="term" data-key="isocline">Isocline</span> is a curve/line in the phase space at each point of which the direction vector <span class="math inline">\((x',y')\)</span> has the same gradient (slope).</p></li>
+<li><p>In other words, the tangent lines to trajectories, at the points where they intersect an isocline, are parallel.</p></li>
+<li><p>An isocline is not, in general, a trajectory, unless the case of a straight line trajectory (which is trivially “tangent” to itself at each point).</p></li>
+<li><p>The important particular cases of isoclines are <span class="term" data-key="nullcline">nullclines</span>:</p></li>
+<li><p><span class="math inline">\(x\)</span>-nullclines are curves/lines along which <span class="math inline">\(x'=0\)</span>, i.e.&nbsp;they are determined from the equation <span class="highlight" data-key="inline"><span class="math inline">\(f(x,y)=0\)</span></span>;</p></li>
+<li><p><span class="math inline">\(y\)</span>-nullclines are curves/lines along which <span class="math inline">\(y'=0\)</span>, i.e.&nbsp;they are determined from the equation <span class="highlight" data-key="inline"><span class="math inline">\(g(x,y)=0\)</span></span>.</p></li>
+<li><p><span class="math inline">\(x\)</span>-nullclines intersect <span class="math inline">\(y\)</span>-nullclines at the fixed points.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.9 Example: continuation of Example 8.6
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Find the nullclines of (<a href="#eq-trap" class="quarto-xref"><span>8.2</span></a>):</p>
+<ul>
+<li><p><span class="math inline">\(x\)</span>-nullclines are <span class="math inline">\(x=0\)</span> (trivial as it is a trajectory) and <span class="math inline">\(6-x+2y=0\)</span>,</p></li>
+<li><p><span class="math inline">\(y\)</span>-nullclines are <span class="math inline">\(y=0\)</span> (trivial) and <span class="math inline">\(x-y-4=0\)</span>.</p></li>
+</ul>
+<p>These two lines hence contain turning points for the trajectories they intersect: on <span class="math inline">\(x\)</span>-nullcline <span class="math inline">\(y=\frac{x}{2}-3\)</span>, the tangent lines to trajectories are vertical, and on <span class="math inline">\(y\)</span>-nullcline <span class="math inline">\(y=x-4\)</span>, the tangent lines to trajectories are horizontal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-08_files/figure-html/tikz-59-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In particular, this provides more detailed description of the behaviour of solutions. E.g. if we know that <span class="math display">\[
+{\color{orange}{x(0)-4}}&lt; y(0) &lt; {\color{blue}{\frac{2}{3}x(0)-4}},
+\]</span> i.e.&nbsp;if <span class="math inline">\((x(0),y(0))\)</span> lies above the (orange) <span class="math inline">\(y\)</span>-nullcline and below the (blue) slanted straight line of trajectories, then <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span> will both increase until a unique moment of time <span class="math inline">\(t_1&gt;0\)</span> when <span class="math inline">\(y(t_1)=x(t_1)-4\)</span>, and after this <span class="math inline">\(x(t)\)</span> will continue increase, converging to <span class="math inline">\(0\)</span> as <span class="math inline">\(t\to\infty\)</span>, whereas <span class="math inline">\(y(t)\)</span> will decrease to <span class="math inline">\(-\infty\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.10 Integral of motion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Let <span class="math inline">\(f,g\)</span> in (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) be smooth on <span class="math inline">\(D\subseteq{\mathbb{R}}^2\)</span> and let <span class="math inline">\(D_1\subseteq D\)</span> be an open set. A smooth function <span class="math inline">\(h:D_1\to{\mathbb{R}}\)</span> is said to be an <span class="term">integral of motion</span> (a.k.a. a <span class="term">first integral</span>) of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) if <span class="math inline">\(h(x(t),y(t))\)</span> is constant for any solution <span class="math inline">\((x(t),y(t))\in D_1\)</span>, <span class="math inline">\(t\in I\)</span>, of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</p></li>
+<li><p>The characteristic property of an integral of motion is the identity <span class="math inline">\(\dfrac{d}{dt} h(x(t),y(t))=0\)</span>, which can be rewritten as follows: <span class="math display">\[
+\begin{multlined}
+\dfrac{\partial}{\partial x} h(x(t),y(t))\cdot f(x(t),y(t))\\+\dfrac{\partial}{\partial y} h(x(t),y(t))\cdot g(x(t),y(t))=0
+\end{multlined}
+\]</span> for all <span class="math inline">\((x(t),y(t))\in D_1\)</span>, <span class="math inline">\(t\in I\)</span>.</p></li>
+<li><p>Since <span class="math inline">\(D_1\subset D\)</span> and, for any <span class="math inline">\((x,y)\in D\)</span>, there is a trajectory which passes through it, to find a first integral one needs to find <span class="math inline">\(h:D_1\to{\mathbb{R}}\)</span> such that</p></li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+\begin{gathered}
+\dfrac{\partial}{\partial x} h(x,y)\cdot f(x,y)+\dfrac{\partial}{\partial y} h(x,y)\cdot g(x,y)=0,
+\\ \text{for all } (x,y)\in D_1.
+\end{gathered}
+\]</span></p>
+</div>
+<ul>
+<li>The trajectories <span class="math inline">\((x(t),y(t))\in D_1\)</span> then lie on the curves, determine dby the <strong>levels</strong> of function <span class="math inline">\(h\)</span>:</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{h(x,y)=C}, \qquad (x,y)\in D_1, \ C\in J\subseteq{\mathbb{R}}.
+\]</span></p>
+</div>
+<p>By the existence and uniquencess theorem, each such curve is a disjoint union of trajectories.</p>
+<ul>
+<li><p>If <span class="math inline">\(h=h(x,y)\)</span> is an integral of motion of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) in <span class="math inline">\(D_1\)</span>, then <span class="math inline">\(\tilde{h}(x,y):=k(h(x,y))\)</span> is also an integral of motion of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) in <span class="math inline">\(D_1\)</span>, for any smooth <span class="math inline">\(k:{\mathbb{R}}\to{\mathbb{R}}\)</span>. In particular, <span class="math inline">\(ah(x,y)+b\)</span> is an integral of motion, for any <span class="math inline">\(a,b\in{\mathbb{R}}\)</span>.</p></li>
+<li><p>The dynamical system (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) is called <span class="term" data-key="conservative system">conservative</span> if it has an integral of motion on the whole phase plane <span class="math inline">\({\mathbb{R}}^2\)</span> (i.e.&nbsp;if <span class="math inline">\(D_1=D={\mathbb{R}}^2\)</span>).</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.11 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Despite the name, integrals of motion do not reveal solutions to (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>), they rather provide the shape of the trajectories.</p></li>
+<li><p>Integrals of motion are one of the main ways to determine nonlinear centres (see below).</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.12 Example: Predator-prey model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span class="math display">\[
+\begin{cases}
+x'=x( \mathtt{a} - \mathtt{ b} y),\\
+y'=y( \mathtt{d} x- \mathtt{c} ).
+\end{cases}
+\]</span> Here <span class="math inline">\(x\geq0\)</span> represents the density of a population of preys and <span class="math inline">\(y\)</span> represents the density of a population of predators.</p>
+<p>The coefficients are positive: <span class="math display">\[
+\mathtt{a} &gt;0, \mathtt{b} &gt;0, \mathtt{c} &gt;0, \mathtt{d} &gt;0.
+\]</span></p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that if, however, $ =0$, then <span class="math inline">\(x'= \mathtt{a} x\)</span> implies <span class="math inline">\(x(t)=x(0)e^{ \mathtt{a} t}\nearrow\infty\)</span> for <span class="math inline">\(x(0)&gt;0\)</span> and $ &gt;0$. In other words, the population of preys will exponentially grow if the predators will not influence them (we suppose that preys do not compete between themselves and have infinitely many food). In contrast, if $ =0$, then <span class="math inline">\(y'=- \mathtt{c} y\)</span> implies <span class="math inline">\(y(t)=y(0)e^{-\mathtt{ c} t}\searrow 0\)</span> for $ &gt;0$, i.e.&nbsp;the population of predators without preys (i.e.&nbsp;without food) will extinct.</p>
+</div>
+</div>
+<p>For positive $ , , , $, there are two fixed points (<strong>check the following!</strong>):</p>
+<ul>
+<li><p>the origin <span class="math inline">\(O(0,0)\)</span> which is a saddle point with the main directions along the coordinate axis which also contain trajectories; as a result, <span class="math inline">\(x=0\)</span> is the stable manifold and <span class="math inline">\(y=0\)</span> is an unstable manifold;</p></li>
+<li><p>the point <span class="math inline">\(A\bigl( \frac{ \mathtt{c} }{ \mathtt{d} }, \frac{ \mathtt{a }}{ \mathtt{b} }\bigr)\)</span> which is a linear centre.</p></li>
+</ul>
+<p>To find an integral of motion, we divide equations (similar to <a href="./DS-Ch-07.html#exa_asfggfjvc">Example 7.11</a>): <span class="math display">\[
+\frac{dx}{dy}=\frac{x(\mathtt{a}- \mathtt{b} y)}{y(\mathtt{d} x- \mathtt{c})},
+\]</span> and one can separate variables: <span class="math display">\[
+\mathtt{d} x- \mathtt{c} \log x = \mathtt{a}\log y- \mathtt{b} y+C
+\]</span> Therefore, <span class="math display">\[
+h(x,y)=\mathtt{d} x- \mathtt{c} \log x-\mathtt{a}\log y+ \mathtt{b} y
+\]</span> and the trajectories lie on the curves <span class="math inline">\(h(x,y)=C\in{\mathbb{R}}\)</span>.</p>
+<p>By <a href="./DS-Ch-07.html#thm_lincentre">Theorem 7.17</a>, the fixed point at <span class="math inline">\(A\)</span> may be either nonlinear centre or spiral. To distinguish these two cases note that, for a centre, any trajectory has a finite number of intersections with a line <span class="math inline">\(x=x_1\)</span> if <span class="math inline">\(x_1\)</span> is close enough to <span class="math inline">\(\dfrac{\mathtt{c}}{\mathtt{d}}\)</span>.</p>
+<p>Whereas, for a spiral, there will be infinitely many points of intersection. However, the equation <span class="math inline">\(h(x_1,y)=C\)</span> has at most two solutions (in <span class="math inline">\(y\)</span>). Indeed, it implies <span class="math display">\[
+\log y=\frac{\mathtt{b}}{\mathtt{a}}y+K, \qquad K:=\frac{\mathtt{d} x_1- \mathtt{c} \log x_1-C}{\mathtt{a}},
+\]</span> and the line <span class="math inline">\(\frac{\mathtt{b}}{\mathtt{a}}y+K\)</span> has at most two points of intersection with the curve <span class="math inline">\(\log y\)</span> (<strong>check!</strong>).</p>
+<p>As a result, we indeed have a nonlinear centre at <span class="math inline">\(\Bigl( \dfrac{\mathtt{c}}{\mathtt{d}}, \dfrac{\mathtt{a}}{\mathtt{b}}\Bigr)\)</span>. Note also that both functions <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span> are hence periodic. Finally, since <span class="math inline">\(y\to0\)</span> along the line <span class="math inline">\(x=0\)</span> (<span class="math inline">\(y\)</span>-axis) and <span class="math inline">\(x\to\infty\)</span> along the line <span class="math inline">\(y=0\)</span> (<span class="math inline">\(x\)</span>-axis), then the motion goes counter-clockwise.</p>
+<p><img src="images/PredPreyCycles.jpg" class="img-fluid"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.13 Example: Hamiltonian dynamics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Hamiltonian dynamics</strong> describes the <strong>one-dimensional</strong> motion of a particle, with position <span class="math inline">\(q=q(t)\in{\mathbb{R}}\)</span>, momentum <span class="math inline">\(p=p(t)\in{\mathbb{R}}\)</span>, and a <span class="term">Hamiltonian</span> <span class="math inline">\(H=H(q,p)\)</span>, according to the following equations of motion: <span class="math display">\[
+\begin{cases}
+q'=\dfrac{\partial H}{\partial p}(q,p),\\[3mm]
+p'=-\dfrac{\partial H}{\partial q}(q,p).
+\end{cases}
+\]</span> Hence, here <span class="math inline">\((x,y)=(q,p)\)</span>, <span class="math inline">\(f=\frac{\partial H}{\partial p}\)</span>, <span class="math inline">\(g=-\frac{\partial H}{\partial q}\)</span>. Then, choosing <span class="math inline">\(h:=H\)</span>, we clearly get <span class="math display">\[
+\frac{\partial h}{\partial q}\cdot \frac{\partial H}{\partial p}+
+\frac{\partial h}{\partial p}\cdot \Bigl(-\frac{\partial H}{\partial q}\Bigr)=0;
+\]</span> therefofe, all trajectories lie on the levels <span class="math inline">\(H(q,p)=\mathrm{const}\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.14 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system</p>
+<p><span id="eq-spec"><span class="math display">\[
+\begin{cases}
+x'=f(y),\\
+y'=g(x),
+\end{cases}
+\tag{8.3}\]</span></span></p>
+<p>where <span class="math inline">\(f,g:{\mathbb{R}}\to{\mathbb{R}}\)</span> are smooth on <span class="math inline">\({\mathbb{R}}\)</span>.</p>
+<p>We define <span class="math display">\[
+h(x,y)=\int f(y) dy -\int g(x) dx.
+\]</span> Then <span class="math display">\[
+\dfrac{\partial}{\partial x} h(x,y)=-g(x), \quad \dfrac{\partial}{\partial y} h(x,y)=f(y),
+\]</span> and hence <span class="math inline">\(\dfrac{\partial}{\partial x} h\cdot f +\dfrac{\partial}{\partial y} h\cdot g=0\)</span> on <span class="math inline">\({\mathbb{R}}^2\)</span>. Therefore, all trajectories of (<a href="#eq-spec" class="quarto-xref"><span>8.3</span></a>) lie on the curves <span class="math inline">\(h(x,y)=C\)</span>, <span class="math inline">\(C\in{\mathbb{R}}\)</span>.</p>
+<p>Nore also that if <span class="math inline">\((x_*,y_*)\)</span> is a fixed point of (<a href="#eq-spec" class="quarto-xref"><span>8.3</span></a>), i.e.&nbsp;if <span class="math inline">\(g(x_*)=f(y_*)=0\)</span>, then the linearisation at <span class="math inline">\((x_*,y_*)\)</span> is determine by the Jacobian: <span class="math display">\[
+J(x_*,y_*)=\begin{pmatrix}0&amp; f'(y_*)\\g'(x_*) &amp;0\end{pmatrix}.
+\]</span> The characteristic equation is then <span class="math display">\[
+\lambda^2-g'(x_*)f'(y_*)=0.
+\]</span> Excluding more delicate degenerate case <span class="math inline">\(g'(x_*)f'(y_*)=0\)</span>, we see that if <span class="math inline">\(g'(x_*)f'(y_*)&gt;0\)</span>, <span class="math inline">\((x_*,y_*)\)</span> is a saddle, and if <span class="math inline">\(g'(x_*)f'(y_*)&lt;0\)</span>, <span class="math inline">\((x_*,y_*)\)</span> is a linear centre. The next example shows both possibilities.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.15 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span class="math display">\[
+\begin{cases}
+x'=y,\\
+y'=x-x^3.
+\end{cases}
+\]</span> The fixed points are <span class="math inline">\((0,0)\)</span>, <span class="math inline">\((1,0)\)</span>, <span class="math inline">\((-1,0)\)</span>.</p>
+<p>At <span class="math inline">\((0,0)\)</span>, the eigenvalues are <span class="math inline">\(\pm1\)</span>, the stable manifold is tangent to the main direction <span class="math inline">\(v_1=(-1,1)^T\)</span>, the unstable manifold is tangent to the main direction <span class="math inline">\(v_2=(1,1)^T\)</span> (<strong>check!</strong>).</p>
+<p>Both <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((-1,0)\)</span> are linear centres, hence, the local phase portraits require further analysis.</p>
+<p>Consider <span class="math display">\[
+h(x,y)=\int y dy - \int(x-x^3) dx=\frac{y^2}{2}-\frac{x^2}{2}+\frac{x^4}{4}.
+\]</span> Then <span class="math inline">\(h\)</span> satisfies <span class="math inline">\(\dfrac{\partial}{\partial x} h\cdot f +\dfrac{\partial}{\partial y} h\cdot g=0\)</span> on <span class="math inline">\({\mathbb{R}}^2\)</span>, with <span class="math inline">\(f(x,y)=y\)</span> and <span class="math inline">\(g(x,y)=x-x^3\)</span>. Hence <span class="math inline">\(h\)</span> is an integral of motion. Construct then another integral of motions: <span class="math inline">\(4h+1\)</span> (to get rid of denominators and also to obtain the full square in <span class="math inline">\(x\)</span>): the trajectories lie on the curves <span class="math inline">\(x^4-2x^2+1+2y^2=\mathrm{const}\)</span>, i.e.</p>
+<p><span id="eq-curve"><span class="math display">\[
+(x^2-1)^2+2y^2=C.
+\tag{8.4}\]</span></span></p>
+<p>With necessity, hence, <span class="math inline">\(C\geq0\)</span>.</p>
+<p>Recall that, by <a href="./DS-Ch-07.html#thm_lincentre">Theorem 7.17</a>, <span class="math inline">\((\pm1,0)\)</span> may be either nonlinear centres or spirals. When <span class="math inline">\(C=0\)</span> in (<a href="#eq-curve" class="quarto-xref"><span>8.4</span></a>), it reads <span class="math inline">\(x^2-1=y=0\)</span>, and the trajectories are just these fixed points. For small <span class="math inline">\(C&gt;0\)</span>, hence the trajectories are close to the fixed point. Take e.g.&nbsp;<span class="math inline">\(x=1\)</span> and any small enough <span class="math inline">\(C&gt;0\)</span>, then there are two values of <span class="math inline">\(y\)</span>, such that (<a href="#eq-curve" class="quarto-xref"><span>8.4</span></a>) holds. In other words, the vertical line <span class="math inline">\(x=1\)</span> crosses the trajectory (<a href="#eq-curve" class="quarto-xref"><span>8.4</span></a>) with small <span class="math inline">\(C&gt;0\)</span> at two points only; that would be impossible if <span class="math inline">\((1,0)\)</span> were a (nonlinear) spiral. Hence, both <span class="math inline">\((\pm1,0)\)</span> are <strong>nonlinear centres</strong> (<strong>locally</strong>!).</p>
+<p>We can analyse here the global phase portrait as well. Since (<a href="#eq-curve" class="quarto-xref"><span>8.4</span></a>) implies <span class="math display">\[
+|x^2-1|\leq \sqrt{C}, \qquad |y|\leq\sqrt{C},
+\]</span> the trajectories are bounded subsets of <span class="math inline">\({\mathbb{R}}^2\)</span>. The trajectories are given by the graphs <span class="math display">\[
+y=\pm\sqrt{\frac12(C-(x^2-1)^2)} \quad \text{for } |x^2-1|\leq \sqrt{C}.
+\]</span> The restriction on <span class="math inline">\(x\)</span> yields</p>
+<p><span id="eq-bddx"><span class="math display">\[
+1-\sqrt{C}\leq x^2\leq 1+\sqrt{C}.
+\tag{8.5}\]</span></span></p>
+<p>Note also that the trajectories are symmetric with respect to both coordinate axes.</p>
+<p>Let <span class="math inline">\(x\geq0\)</span>. For <span class="math inline">\(0&lt; C&lt;1\)</span>, (<a href="#eq-bddx" class="quarto-xref"><span>8.5</span></a>) reads <span class="math display">\[
+\sqrt{1-\sqrt{C}}\leq x\leq \sqrt{1+\sqrt{C}},
+\]</span> and the trajectories pass through points <span class="math inline">\((\sqrt{1\pm\sqrt{C}},0)\)</span>. Hence the trajectories are indeed cycles around the fixed point <span class="math inline">\((1,0)\)</span>.</p>
+<p>For <span class="math inline">\(C=1\)</span>, (<a href="#eq-bddx" class="quarto-xref"><span>8.5</span></a>) reads <span class="math inline">\(0\leq x\leq \sqrt{2}\)</span>, and if <span class="math inline">\(x\to0\)</span> then <span class="math inline">\(y\to0\)</span> as well. Therefore, if a trajectory starts near the origin, it then pass through <span class="math inline">\((\sqrt{2},0)\)</span> and return to the origin. Since the origin is a fixed point, the trajectory will just tend to the origin, but will not contain it. As a result, the stable manifold at the origin is given by the trajectory <span class="math inline">\(y=-\sqrt{\frac12(1-(x^2-1)^2)}\)</span> and the unstable manifold at the origin is given by the trajectory <span class="math inline">\(y=\sqrt{\frac12(1-(x^2-1)^2)}\)</span>. (<strong>Check</strong> that indeed <span class="math inline">\(y'(0)=\mp1\)</span> according to the main directions <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>.)</p>
+<p>For <span class="math inline">\(C&gt;1\)</span>, (<a href="#eq-bddx" class="quarto-xref"><span>8.5</span></a>) reads <span class="math display">\[
+0\leq x\leq \sqrt{1+\sqrt{C}},
+\]</span> and the trajectories pass through <span class="math inline">\((\sqrt{1+\sqrt{C}},0)\)</span> and <span class="math inline">\((0,\pm\sqrt{\frac{1}{2}(C-1)}\)</span>.</p>
+<p>Note also the direction vectors <span class="math inline">\((x',y')\)</span> at e.g.&nbsp;<span class="math inline">\(x\)</span>-axis, where <span class="math inline">\(y=0\)</span>, are <span class="math inline">\((x-x^3,0)\)</span>, i.e.&nbsp;they are directed up for <span class="math inline">\(x&lt;-1\)</span> and <span class="math inline">\(0&lt;x&lt;1\)</span> and down otherwise. Hence the motion is indeed clockwise (also to be agreed with the motion at the origin).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-08_files/figure-html/tikz-60-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.16 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A trajectory which starts and finishes at the same fixed point (but does not contain it) is called a <span class="term">homoclinic orbit</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.17 Linear centre and straight trajectories
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Let <span class="math inline">\((x_*,y_*)\)</span> be a linear centre of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</p></li>
+<li><p>Suppose that there is a region <span class="math inline">\(D\subset {\mathbb{R}}^2\)</span> (<strong>bounded or unbounded</strong>) such that</p></li>
+<li><p><span class="math inline">\((x_*,y_*)\in D\)</span>,</p></li>
+<li><p>the interior of <span class="math inline">\(D\)</span> does not contain another fixed points of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>),</p></li>
+<li><p>the boundary of <span class="math inline">\(D\)</span> is a union of <strong>straight trajectories</strong> given by equations <span class="math display">\[
+k_1(x,y)=0, \ldots, k_n(x,y)=0
+\]</span> (i.e.&nbsp;<span class="math inline">\(a_1x+b_1y+c_1=0\)</span>, , <span class="math inline">\(a_nx+b_ny+c_n=0\)</span>).</p></li>
+<li><p>Then one can look for the integral of motion of the form <span class="math display">\[
+h(x,y)=\bigl(k_1(x,y)\bigr)^{p_1}\ldots
+\bigl(k_n(x,y)\bigr)^{p_n}
+\]</span> for certain values of <span class="math inline">\(p_1,\ldots,p_n&gt;0\)</span>.</p></li>
+<li><p>The boundary of <span class="math inline">\(D\)</span> will satisfy hence <span class="math inline">\(h(x,y)=0\)</span>.</p></li>
+<li><p>Note that <span class="math inline">\(p_1,\ldots,p_n\)</span> are determined not uniquely, as <span class="math inline">\((h(x,y))^q\)</span> will be also an integral of motion for any <span class="math inline">\(q&gt;0\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.18 Example: finalising Example 8.6
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall that we are dealing with the dynamical system (<a href="#eq-trap" class="quarto-xref"><span>8.2</span></a>), i.e. <span class="math display">\[
+\begin{cases}
+x'= x (6 - x + 2 y)=:f(x,y),\\
+y'= y (x-y - 4):=g(x,y),
+\end{cases}
+\]</span> and <span class="math inline">\(C(2,-2)\)</span> is its linear centre which lies inside triangle <span class="math inline">\(OAB\)</span> whose boundaries are <span class="math inline">\(x=0\)</span>, <span class="math inline">\(y=0\)</span>, <span class="math inline">\(y=\frac23x-4\)</span>. Rewriting the latter equation as <span class="math inline">\(2x-3y-12=0\)</span>, we consider <span class="math display">\[
+h(x,y)=x^ay^b(2x-3y-12)^c,
+\]</span> for some <span class="math inline">\(a,b,c&gt;0\)</span>. We are going to find <span class="math inline">\(a,b,c&gt;0\)</span>, such that, for all <span class="math inline">\((x,y)\in{\mathbb{R}}^2\)</span> (it would be enough to have this inside <span class="math inline">\(OAB\)</span>) <span id="eq-32rfds"><span class="math display">\[
+\dfrac{\partial}{\partial x} h \cdot f +\dfrac{\partial}{\partial y} h\cdot g=0.
+\tag{8.6}\]</span></span></p>
+<p>However, since for any integral of motion <span class="math inline">\(h\)</span>, the function <span class="math inline">\(h^{\frac{1}{c}}\)</span> is also an integral of motion, we can assume that <span class="math inline">\(c=1\)</span>, hence,</p>
+<div class="highlight">
+<p><span class="math display">\[
+{h(x,y)=x^ay^b(2x-3y-12),}
+\]</span></p>
+</div>
+<p>We have <span class="math display">\[
+\begin{aligned}
+\dfrac{\partial}{\partial x} h(x,y)&amp;=x^{a-1}y^b \bigl( 2(a+1)x-3ay-12a\bigr),\\
+\dfrac{\partial}{\partial y} h(x,y)&amp;=x^ay^{b-1} \bigl( 2bx-3(b+1)y-12b\bigr).
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math display">\[
+\begin{aligned}
+&amp;\quad \dfrac{\partial}{\partial x} h \cdot f +\dfrac{\partial}{\partial y} h\cdot g \\
+&amp;= x^ay^b \Bigl( \bigl( 2(a+1)x-3ay-12a\bigr)(6 - x + 2 y)\\
+&amp;\qquad\qquad + \bigl( 2bx-3(b+1)y-12b\bigr)(x-y - 4)\Bigr).
+\end{aligned}
+\]</span> To have (<a href="#eq-32rfds" class="quarto-xref"><span>8.6</span></a>) for all <span class="math inline">\(x,y\)</span>, we require <span class="math display">\[
+\begin{multlined}
+\bigl( 2(a+1)x-3ay-12a\bigr)(6 - x + 2 y)\\
++ \bigl( 2bx-3(b+1)y-12b\bigr)(x-y - 4)=0.
+\end{multlined}
+\]</span> The coefficient before <span class="math inline">\(x^2\)</span> requires: <span class="math inline">\(a+1=b\)</span>. The coefficient before <span class="math inline">\(y^2\)</span> requires: <span class="math inline">\(b+1=2a\)</span>, Therefore, <span class="math inline">\(b+1=2b-2\)</span>, <span class="math inline">\(b=3\)</span>, then <span class="math inline">\(a=2\)</span>. Then the requirement is satisfied (<strong>check!</strong>). Hence, the curves <span class="math display">\[
+h(x,y):=x^2y^3(2x-3y-12)=D, \qquad D\in{\mathbb{R}},
+\]</span> contains (<strong>all</strong>) trajectories of the system (<a href="#eq-trap" class="quarto-xref"><span>8.2</span></a>). At the edges of triangle <span class="math inline">\(OAB\)</span>, <span class="math inline">\(h(x,y)=0\)</span>. At the fixed point <span class="math inline">\(C(2,-2)\)</span>, <span class="math inline">\(h(2,-2)=64\)</span>. Therefore, by continuity, the levels <span class="math inline">\(h(x,y)=D\)</span> for <span class="math inline">\(D\in[0,64]\)</span> contain trajectories inside the triangle. (Note that these levels contain other trajectories as well.)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.19 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we consider e.g.&nbsp;<span class="math inline">\(x=2\)</span>, and if <span class="math inline">\(D&lt;64\)</span> is close to <span class="math inline">\(64\)</span>, then there only finite number of <span class="math inline">\(y\)</span> such that that <span class="math inline">\(h(x,y)=D\)</span> holds. Hence <span class="math inline">\(C(2,-2)\)</span> cannot be a spiral fixed point, therefore, it is a <strong>(nonlinear) centre</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-08_files/figure-html/tikz-61-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.20 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>More generally, if a linear centre is inside a bounded region which does not contain another fixed points and whose boundary is a union of <strong>straight trajectories</strong> given by linear equations <span class="math inline">\(k_1(x,y)=0, \ldots, k_n(x,y)=0\)</span>, then one can look for the integral of motion of the form <span class="math inline">\(h=k_1^{p_1}\ldots k_n^{p_n}\)</span> for some <span class="math inline">\(p_1,\ldots,p_n&gt;0\)</span>; one of which can be chosen equal to <span class="math inline">\(1\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.21 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall that (see <a href="./DS-Ch-06.html#rmk_lyap">Remark 6.12</a>) that a fixed point <span class="math inline">\((x_*,y_*)\)</span> of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) is said to be <span class="term" data-key="stability!Lyapunov">Lyapunov stable</span> (stable in the sense of Lyapunov) if, <strong>for every</strong> neighbourhood <span class="math inline">\(U\subset{\mathbb{R}}^2\)</span> of <span class="math inline">\((x_*,y_*)\)</span>, there exists a (smaller) neighbourhood <span class="math inline">\(W\subset U\)</span> such that any trajectory which starts in <span class="math inline">\(W\)</span> remains in <span class="math inline">\(U\)</span> for all <span class="math inline">\(t\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.22 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A fixed point <span class="math inline">\((x_*,y_*)\)</span> of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) is said to be <span class="term" data-key="stability!asymptotic">asymptotically stable</span> if</p>
+<ul>
+<li><p>it is Lyapunov stable, and</p></li>
+<li><p><strong>there exists</strong> a neighbourhood <span class="math inline">\(U\subset{\mathbb{R}}^2\)</span> of <span class="math inline">\((x_*,y_*)\)</span>, such that any trajectory which starts in <span class="math inline">\(U\)</span> converges to <span class="math inline">\((x_*,y_*)\)</span> as <span class="math inline">\(t\to\infty\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.23 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A fixed point <span class="math inline">\((x_*,y_*)\)</span> of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) is said to be <span class="term" data-key="stability!neutral">neutrally stable</span> if it is stable in the sense of Lyapunov but it is not asymptotically stable.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.24 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A typical example of a neutrally stable fixed point is hence a <strong>nonlinear centre</strong>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.25 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that even if all trajectories of the system converge to the unique fixed point, it may be not stable in the sense of Lyapunov and hence it will not be asymptotically stable. For example: <span class="math display">\[
+\begin{cases}
+x'=\dfrac{x^2(y-x)+y^5}{(x^2+y^2)(1+(x^2+y^2)^2)}, \\[3mm]
+y'=\dfrac{y^2(y-2x)}{(x^2+y^2)(1+(x^2+y^2)^2)},
+\end{cases}
+\]</span> has the only fixed point at the origin, that is, however, <strong>non-hyperbolic</strong>: <span class="math inline">\(J(0,0)=\begin{pmatrix}-1&amp;1\\0&amp;0\end{pmatrix}\)</span>. The trajectories look as follows:</p>
+<p><img src="spec.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.26 Asymptotic stability from linearisation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>If a fixed point <span class="math inline">\((x_*,y_*)\)</span> of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) is such that the linearisation of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>) at <span class="math inline">\((x_*,y_*)\)</span> has eigenvalues with</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{\mathrm{Re} \lambda_1&lt;0\quad \text{and} \quad \mathrm{Re} \lambda_2&lt;0}
+\]</span></p>
+</div>
+<p>(and hence, in particular, is hyperbolic) , then <span class="math inline">\((x_*,y_*)\)</span> is an asymptotically stable fixed point, in some, possibly, small neighbourhood <span class="math inline">\(U\subset{\mathbb{R}}^2\)</span> of <span class="math inline">\((x_*,y_*)\)</span>.</p>
+<ul>
+<li><p>This corresponds hence to a stable node or stable spiral of the linearisation which is preserved in the local phase portrait of the nonlinear system (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>), as well a stable degenerate node or stable star of the linearisation which does not illuminate the phase portrait of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>), but still keeps the stability.</p></li>
+<li><p>We are going to discuss now how to extend the domain <span class="math inline">\(U\)</span> on which the asymptotic stability takes place to justify/enhance the global phase portrait of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>).</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.27 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\((x_*,y_*)\in U \subset {\mathbb{R}}^2\)</span> be a point and its neighbourhood on plane. Let <span class="math inline">\(V: U\to{\mathbb{R}}\)</span> and</p>
+<div class="highlight">
+<p><span class="math display">\[
+{V(x_*,y_*)=0.}
+\]</span></p>
+</div>
+<p>Then <span class="math inline">\(V\)</span> is said to be</p>
+<ul>
+<li><span class="term" data-key="function!positive definite">positive definite</span> in <span class="math inline">\(U\)</span>, if</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{V(x,y)&gt;0 \quad \text{for all } (x,y)\in U\setminus \{(x_*,y_*)\};}
+\]</span></p>
+</div>
+<ul>
+<li><span class="term" data-key="function!negative definite">negative definite</span> in <span class="math inline">\(U\)</span>, if</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{V(x,y)&lt;0 \quad \text{for all } (x,y)\in U\setminus \{(x_*,y_*)\};}
+\]</span></p>
+</div>
+<ul>
+<li><span class="term" data-key="function!positive semi-definite">positive semi-definite</span> in <span class="math inline">\(U\)</span>, if</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{V(x,y)\geq 0 \quad \text{for all } (x,y)\in U\setminus \{(x_*,y_*)\};}
+\]</span></p>
+</div>
+<ul>
+<li><span class="term" data-key="function!negative semi-definite">negative semi-definite</span> in <span class="math inline">\(U\)</span>, if</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{V(x,y)\leq 0 \quad \text{for all } (x,y)\in U\setminus \{(x_*,y_*)\}.}
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.28 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The notion of positive/negative definite/ semi-definite functions has completely different meaning in some other areas of mathematics (e.g.&nbsp;in probability and analysis).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.29 Theorem: Lyapunov stability theorem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\((x_*,y_*)\in U\subset {\mathbb{R}}^2\)</span> be a fixed point of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>), and <span class="math inline">\(U\)</span> be its neighbourhood. Let <span class="math inline">\(V:U\to{\mathbb{R}}\)</span> be a <strong>smooth</strong> function on <span class="math inline">\(U\)</span> such that</p>
+<div class="highlight">
+<p><span class="math display">\[
+V \text{is positive definite on } U.
+\]</span></p>
+</div>
+<p>Denote <span class="highlight" data-key="inline"><span class="math inline">\(\dfrac{d}{dt} V := \dfrac{d}{dt} V(x(t),y(t)).\)</span></span></p>
+<ol type="1">
+<li>If</li>
+</ol>
+<div class="highlight">
+<p><span class="math display">\[
+{\dfrac{d}{dt} V \text{is negative semi-definite on } U,}
+\]</span></p>
+</div>
+<p>then <span class="math inline">\((x_*,y_*)\)</span> is Lyapunov stable in <span class="math inline">\(U\)</span>.</p>
+<ol start="2" type="1">
+<li>If</li>
+</ol>
+<div class="highlight">
+<p><span class="math display">\[
+{\dfrac{d}{dt} V \text{is negative definite on } U,}
+\]</span></p>
+</div>
+<p>then <span class="math inline">\((x_*,y_*)\)</span> is asymptotically stable in <span class="math inline">\(U\)</span>;</p>
+<ol start="3" type="1">
+<li>if <span class="highlight" data-key="inline"><span class="math inline">\(\dfrac{d}{dt} V \text{is negative semi-definite on } U\)</span></span>, <span class="math inline">\(U\)</span> does not contain other fixed points of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>), and <span class="math inline">\(\dfrac{d}{dt} V\)</span> is not equal to <span class="math inline">\(0\)</span> <strong>identically on a trajectory</strong> of (<a href="#eq-ds2a" class="quarto-xref"><span>8.1</span></a>), apart from the fixed point <span class="math inline">\((x_*,y_*)\)</span> itself, then <span class="math inline">\((x_*,y_*)\)</span> is asymptotically stable in <span class="math inline">\(U\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.30 Lyapunov functions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>A function <span class="math inline">\(V\)</span> which satisfy conditions of the Lyapunov stability theorem is called the <span class="term">Lyapunov function</span>.</p></li>
+<li><p>More precisely, for a positive definite on <span class="math inline">\(U\)</span> function <span class="math inline">\(V\)</span>, if item 1 holds, then <span class="math inline">\(V\)</span> is called a <strong>weak Lyapunov function</strong>, and if item 2 holds, the <span class="math inline">\(V\)</span> is called a <strong>strong Lyapunov function</strong>.</p></li>
+<li><p>The following functions are often appear Lyapunov functions in examples:</p></li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+{V_1(x,y)=a(x-x_*)^2+b(y-y_*)^2,}
+\]</span></p>
+</div>
+<p><span class="math inline">\(a,b&gt;0\)</span>, <span class="math inline">\(U\)</span> is a subset of <span class="math inline">\({\mathbb{R}}^2\)</span>;</p>
+<div class="highlight">
+<p><span class="math display">\[
+{V_2(x,y)=a(x-x_*)^{2m}+b(y-y_*)^{2n},}
+\]</span></p>
+</div>
+<p><span class="math inline">\(a,b&gt;0\)</span>, <span class="math inline">\(n,m\in{\mathbb{N}}\)</span>, <span class="math inline">\(U\)</span> is a subset of <span class="math inline">\({\mathbb{R}}^2\)</span>;</p>
+<div class="highlight">
+<p><span class="math display">\[
+\begin{multlined}
+V_3(x,y)=a\bigl(x-x_*-x_*\log\frac{x}{x_*}\bigr)\\+b\Bigl(y-y_*-y_*\log\frac{y}{y_*}\bigr),
+\end{multlined}
+\]</span></p>
+</div>
+<p><span class="math inline">\(a,b&gt;0\)</span>, <span class="math inline">\(U\)</span> is a subset of <span class="math inline">\((0,\infty)\times(0,\infty)\)</span>. \ To show that <span class="math inline">\(V_3\)</span> is positive definite on <span class="math inline">\((0,\infty)\times(0,\infty)\)</span>, note that, for a fixed <span class="math inline">\(s_*&gt;0\)</span>, the function <span class="math inline">\(p(s)=s-s_*-s_*\log\frac{s}{s_*}\)</span>, <span class="math inline">\(s&gt;0\)</span>, has a unique minimum at <span class="math inline">\(s=s_*\)</span> and <span class="math inline">\(p(s_*)=0\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.31 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Typically, the neighbourhood <span class="math inline">\(U\)</span> of <span class="math inline">\((x_*,y_*)\)</span> is either an infinite set, like <span class="math inline">\({\mathbb{R}}^2\)</span> or <span class="math inline">\((0,\infty)\times(0,\infty)\)</span>, or a <strong>level set</strong> <span class="math display">\[
+\{(x,y)\in {\mathbb{R}}^2 \mid V(x,y)\leq C\}
+\]</span> of the Lyapunov function <span class="math inline">\(V\)</span> for certain <span class="math inline">\(C&gt;0\)</span>. (Notice the difference between level sets and levels!)</p></li>
+<li><p>Often the inequality <span class="math inline">\(\dfrac{d}{dt} V&lt;0\)</span> (or <span class="math inline">\(\leq 0\)</span>) holds on some set <span class="math inline">\(D\subset{\mathbb{R}}^2\)</span> only. In this case, the requirement <span class="math display">\[
+\{(x,y)\in {\mathbb{R}}^2 \mid V(x,y)\leq C \ (\text{or } &lt; C)\}\subset D
+\]</span> justifies the largest level set (i.e.&nbsp;the largest possible <span class="math inline">\(C&gt;0\)</span> to have the latter inclusion) to be used as <span class="math inline">\(U\)</span> in the Lyapunov stability theorem.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.32 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system</p>
+<p><span id="eq-spiralpp"><span class="math display">\[
+\begin{cases}
+x'=x(1 - y),\\
+y'=y(x - 1 - y),
+\end{cases}
+\tag{8.7}\]</span></span></p>
+<p>for <span class="math inline">\(x\geq0\)</span>, <span class="math inline">\(y\geq0\)</span>.</p>
+<p>This is a modification of the predator-prey model from <a href="#exa_predprey">Example 8.12</a>, here predators compete with rate <span class="math inline">\(1\)</span> (the term <span class="math inline">\(-y^2\)</span> in the second equation of (<a href="#eq-spiralpp" class="quarto-xref"><span>8.7</span></a>)). Here also the origin <span class="math inline">\(O\)</span> is a saddle fixed point, with the basis vectors as the main directions (<strong>check!</strong>). Since <span class="math inline">\(x=0\)</span> and <span class="math inline">\(y=0\)</span> are <strong>both</strong> solutions, the coordinate axes contain trajectories. Again, <span class="math inline">\(x=0\)</span> is the stable manifold, and <span class="math inline">\(y=0\)</span> is the unstable manifold (<strong>check!</strong>). The second fixed point is <span class="math inline">\(A(2,1)\)</span>, and this is a stable spiral (<strong>check!</strong>). The third fixed point is <span class="math inline">\((0,-1)\)</span>, and it lies out of the quadrant <span class="math inline">\(\{x\geq0,y\geq0\}\)</span>.</p>
+<p>Hence, <span class="math inline">\(A\)</span> is an asymptotically stable in a small neighbourhood. Our aim is to describe the largest possible area for asymptotic stability of <span class="math inline">\(A\)</span>. Consider the function <span class="math inline">\(V=V_3\)</span> (see above): <span class="math display">\[
+V(x,y)=a\bigl(x-2-2\log\frac{x}{2}\bigr)+b\bigl(y-1-\log y\bigr).
+\]</span> Then <span class="math display">\[
+\begin{aligned}
+\dfrac{d}{dt} V &amp;= a\bigl(1-\frac{2}{x}\bigr)x(1 - y) + b\bigl(1-\frac{1}{y}\bigr)y(x - 1 - y)\\
+&amp;=a(x-2-xy+2y)+b(xy-x+1-y^2).
+\end{aligned}
+\]</span> Since we want to have <span class="math inline">\(\dfrac{d}{dt} V&lt;0\)</span>, we take <span class="math inline">\(a=b\)</span> to get rid of <span class="math inline">\((b-a)xy\)</span>.</p>
+<p>Then, taking e.g.&nbsp;<span class="math inline">\(a=b=1\)</span>, <span class="math display">\[
+\dfrac{d}{dt} V = -(y-1)^2&lt;0,
+\]</span> unless <span class="math inline">\(y=1\)</span>. However, by the second equation of (<a href="#eq-spiralpp" class="quarto-xref"><span>8.7</span></a>), the line <span class="math inline">\(y=1\)</span> does not contain trajectories of the system unless <span class="math inline">\(x=2\)</span>, that gives the fixed point. Hence, by the third item of the Lyapunov stability theorem, <span class="math inline">\(A(2,1)\)</span> is asymptotically stable on the whole <span class="math inline">\(\{x&gt;0,y&gt;0\}\)</span> (the area where <span class="math inline">\(V\)</span> is well-defined and positive-definite). The direction of motion is determined by the motion on the axes:</p>
+<p><img src="images/spiral.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.33 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span class="math display">\[
+\begin{cases}
+x'=-y-x^3,\\
+y'=x-y^3.
+\end{cases}
+\]</span> Here the origin is the only fixed point and this is a linear centre (<strong>check!</strong>). The local phase portrait is hence unclear. Consider the function <span class="math inline">\(V(x,y)=x^2+y^2\)</span>. Then <span class="math display">\[
+\begin{aligned}
+\dfrac{d}{dt} V &amp;=\dfrac{\partial}{\partial x} V \cdot f + \dfrac{\partial}{\partial y} V\cdot g\\
+&amp;= 2x(-y-x^3)+2y(x-y^3)\\
+&amp;= -2x^4-2y^4&lt;0, \qquad (x,y)\neq(0,0).
+\end{aligned}
+\]</span> Therefore, <span class="math inline">\(V\)</span> is positive-definite in <span class="math inline">\({\mathbb{R}}^2\)</span>, and <span class="math inline">\(\dfrac{d}{dt} V\)</span> is negative-definite in <span class="math inline">\({\mathbb{R}}^2\)</span>, hence, <span class="math inline">\(V\)</span> is a strong Lyapunov function in <span class="math inline">\({\mathbb{R}}^2\)</span>. Therefore, the origin is asymptotically stable regardless of the initial condition (a.k.a. <strong>globally asymptotically stable</strong>), by the Lyapunov stability theorem. In particular, the trajectories are indeed spirals, at least around the origin.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.34 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span class="math display">\[
+\begin{cases}
+x'=x(y-1),\\
+y'=y(x-1).
+\end{cases}
+\]</span> Here there are two fixed points: the origin <span class="math inline">\(O(0,0)\)</span> is a linear stable star and <span class="math inline">\(A(1,1)\)</span> is a saddle (<strong>check!</strong>). Moreover, the coordinate axes and the line <span class="math inline">\(y=x\)</span> contain trajectories (<strong>check!</strong>). We know that the origin will be locally asymptotically stable, and we are going to show how large can be the area of convergence. Consider again the function <span class="math inline">\(V(x,y)=x^2+y^2\)</span>. Then <span class="math display">\[
+\begin{gathered}
+\dfrac{d}{dt} V= 2x^2(y-1)+2y^2(x-1)&lt;0 \\
+\text{for } x&lt;1, y&lt;1, (x,y)\neq(0,0).
+\end{gathered}
+\]</span> Therefore, <span class="math inline">\(V\)</span> is a strong Lyapunov function on <span class="math inline">\(D:=\{(x,y)\in{\mathbb{R}}^2\mid x&lt;1,y&lt;1\}\)</span>. The largest level set of <span class="math inline">\(V\)</span> to be a subset of <span class="math inline">\(D\)</span> is, evidently <span class="math display">\[
+\{V(x,y)=x^2+y^2&lt; 1\}\subset D,
+\]</span> i.e.&nbsp;any trajectory which starts inside the unit circle converges to the origin as <span class="math inline">\(t\to\infty\)</span>, by the Lyapunov stability theorem.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.35 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span class="math display">\[
+\begin{cases}
+x'=-y - x^5,\\
+y'=x^3 - y^3.
+\end{cases}
+\]</span> Here the origin is the only fixed point, however, the local phase portrait is unclear, as the linearisation is <span class="math display">\[
+\begin{pmatrix}
+0 &amp;-1\\0 &amp;0
+\end{pmatrix}.
+\]</span></p>
+<p>We will look for a Lyapunov function in the form: <span class="math display">\[
+V(x,y)=ax^{2n}+y^{2m}, \qquad a&gt;0, \ n,m\in{\mathbb{N}}.
+\]</span> Note that if <span class="math inline">\(V\)</span> is a Lyapunov function, then <span class="math inline">\(c V\)</span> is also a Lyapunov function for any <span class="math inline">\(c&gt;0\)</span>, because of this, we have taken the second coefficient in <span class="math inline">\(V\)</span> equal to <span class="math inline">\(1\)</span>. Then <span class="math display">\[
+\begin{aligned}
+\dfrac{d}{dt} V &amp;=2nax^{2n-1}(-y - x^5)+2my^{2m-1}(x^3 - y^3)\\
+&amp; = -2nax^{2n-1}y-2nax^{2n+4}\\&amp;\quad +2mx^3y^{2m-1}-2my^{2m+2}.
+\end{aligned}
+\]</span> Since we need a negative function, we get rid of odd powers by setting <span class="math display">\[
+mx^3y^{2m-1}=nax^{2n-1}y.
+\]</span></p>
+<p>Then with necessity <span class="math inline">\(2n-1=3\)</span>, <span class="math inline">\(2m-1=1\)</span>, i.e.&nbsp;<span class="math inline">\(n=2\)</span>, <span class="math inline">\(m=1\)</span>, and <span class="math inline">\(a=\frac12\)</span>. Therefore, <span class="math display">\[
+\dfrac{d}{dt} V=-2x^{8}-2y^{4}&lt;0, \qquad (x,y)\neq(0,0),
+\]</span> and <span class="math inline">\(V\)</span> is a strong Lyapunov function in <span class="math inline">\({\mathbb{R}}^2\)</span>, and hence the origin is globally asymptotically stable by the Lyapunov stability theorem.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+8.36 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system <span id="eq-last"><span class="math display">\[
+\begin{cases}
+x'=-y^3 - x + x^5,\\
+y'=x.
+\end{cases}
+\tag{8.8}\]</span></span></p>
+<p>Here the origin is the only fixed point, and the linearisation has a line of stable fixed points (<strong>check!</strong>). The local phase portrait is hence unclear. We will look for a Lyapunov function in the form: <span class="math display">\[
+V(x,y)=ax^{2n}+y^{2m}, \qquad a&gt;0, \ n,m\in{\mathbb{N}}.
+\]</span> Then <span class="math display">\[
+\begin{aligned}
+\dfrac{d}{dt} V &amp;=2nax^{2n-1}(-y^3 - x + x^5)+2mxy^{2m-1}\\
+&amp; = -2nax^{2n-1}y^3 - 2nax^{2n} \\&amp;\quad + 2nax^{2n+4}+2mxy^{2m-1}.
+\end{aligned}
+\]</span></p>
+<p>Since we need a negative function, we get rid of odd powers by setting <span class="math display">\[
+mxy^{2m-1}=nax^{2n-1}y^3,
+\]</span> then <span class="math inline">\(n=1\)</span>, <span class="math inline">\(m=2\)</span>, <span class="math inline">\(a=2\)</span>. Hence, <span class="math inline">\(V(x,y)=2x^2+y^4\)</span>, and <span class="math display">\[
+\dfrac{d}{dt} V = - 4x^{2}+ 4x^{6}=-4x^2(1-x^4)&lt;0,
+\]</span> if <span class="highlight" data-key="inline"><span class="math inline">\(|x|&lt;1 \text{ and } x\neq0\)</span></span>. The line <span class="math inline">\(x=0\)</span> does not contain trajectories of (<a href="#eq-last" class="quarto-xref"><span>8.8</span></a>) except the fixed point at the origin, as <span class="math inline">\(x=0\)</span> in the first equation of (<a href="#eq-last" class="quarto-xref"><span>8.8</span></a>) implies <span class="math inline">\(y=0\)</span>. Hence, we require <span class="math display">\[
+\{(x,y)\in{\mathbb{R}}^2\mid 2x^2+y^4&lt;C\} \subset \{(x,y)\in{\mathbb{R}}^2\mid |x|&lt;1 \},
+\]</span> i.e.&nbsp;find the maximal <span class="math inline">\(C&gt;0\)</span> such that <span class="math display">\[
+2x^2+y^4&lt;C \Longrightarrow |x|&lt;1.
+\]</span> Therefore, <span class="math inline">\(C=2\)</span>. As a result, by the Lyapunov stability theorem (see item 3), any trajectory which starts inside <span class="math display">\[
+\{(x,y)\in{\mathbb{R}}^2\mid 2x^2+y^4&lt;2\}
+\]</span> converges to the origin as <span class="math inline">\(t\to\infty\)</span>.</p>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./DS-Ch-07.html" class="pagination-link" aria-label="Local phase portrait">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Local phase portrait</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Dmitri Finkelshtein</p>
+</div>   
+    <div class="nav-footer-center">
+<p>MA-M375/M75: Lecture Notes</p>
+</div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

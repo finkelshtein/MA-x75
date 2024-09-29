@@ -1,0 +1,182 @@
+:root {
+    --callout-tip-color: #B31E21;
+    --callout-important-color: #7A004B; 
+    --callout-note-color: #704214;
+    --callout-warning-color: #35554E;
+    --callout-caution-color: #532D80;
+    --background-color: rgba(236, 233, 240, 0.95);
+    --mathbox-light-color: #F6F6EE; 
+    --mathbox-shadow-color: #71716A;
+    --alert-color: #c71585;
+  }
+
+div.callout-note.callout {
+    border-color: var(--callout-note-color);
+}
+
+div.callout-tip.callout {
+    border-color: var(--callout-tip-color);
+}
+
+
+
+div.callout-warning.callout {
+    border-color: var(--callout-warning-color);
+}
+
+div.callout-important.callout {
+    border-color: var(--callout-important-color);
+}
+
+div.callout-caution.callout {
+    border-color: var(--callout-caution-color);
+}
+
+div.callout-note.callout-style-default>.callout-header {
+    background-color: rgb(from var(--callout-note-color) r g b / 0.2);
+}
+
+div.callout-tip.callout-style-default>.callout-header {
+    background-color: rgb(from var(--callout-tip-color) r g b / 0.2);
+}
+
+div.callout-warning.callout-style-default>.callout-header {
+    background-color: rgb(from var(--callout-warning-color) r g b / 0.2);
+}
+
+div.callout-important.callout-style-default>.callout-header {
+    background-color: rgb(from var(--callout-important-color) r g b / 0.2);
+}
+
+div.callout-caution.callout-style-default>.callout-header {
+    background-color: rgb(from var(--callout-caution-color) r g b / 0.2);
+}
+
+.callout.callout-style-default {
+    border-left-width: 5pt;
+    border-right-width: 2pt;
+    border-top-width: 2pt;
+    border-bottom-width: 2pt;
+}
+
+div.child.callout-tip.callout {
+    border-width: 0pt;
+    width: 80%;
+    margin: auto;
+    background-color: rgb(from var(--callout-tip-color) r g b / 0.1);
+}
+
+div.child.callout-tip.callout-style-default>.callout-header {
+    background-color:transparent;
+}
+
+div.child.callout-warning.callout {
+    border-width: 0pt;
+    width: 80%;
+    margin: auto;
+    background-color: rgb(from var(--callout-warning-color) r g b / 0.1);
+}
+
+div.child.callout-warning.callout-style-default>.callout-header {
+    background-color:transparent;
+}
+
+
+
+.theorem.example {
+    border: 2pt solid var(--callout-warning-color);
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+    
+
+body {
+    background-color: white;
+}
+
+div.sidebar.sidebar-navigation.rollup.quarto-sidebar-toggle-contents, nav.sidebar.sidebar-navigation:not(.rollup) {
+    background-color: white;
+}
+
+figure.figure {
+    /* border-style: groove;
+    border-color: #c3b7ce;
+    border-width: medium; */
+    padding: 10pt;
+    /* border-radius: 3pt; */
+}
+
+.callout-title-container {
+    font-weight: bold;
+}
+
+.term {
+    color: blue;
+    font-weight: bold;
+}
+
+.inlinealert {
+    color: var(--alert-color);
+}
+
+
+
+.highlight mjx-table[style^="width: auto"] {
+    background-color: var(--mathbox-light-color);
+    border-radius: 0.7rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    box-shadow: 0.3rem 0.3rem rgb(from var(--mathbox-shadow-color) r g b / 0.3);
+}
+
+.highlight mjx-math:not([width = "full"]) {
+    background-color: var(--mathbox-light-color);
+    border-radius: 0.7rem;
+    box-shadow: 0.3rem 0.3rem rgb(from var(--mathbox-shadow-color) r g b / 0.3);
+    padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math:not([width = "full"]) {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.sc {
+    font-variant: small-caps;
+}
+
+td {
+    border-right: solid 2px #d3d8dc; 
+    border-left: solid 2px #d3d8dc;
+    border-top: solid 2px #d3d8dc;
+    border-bottom: solid 2px #d3d8dc;
+}
+
+thead {
+    border-right: solid 2px #d3d8dc; 
+    border-left: solid 2px #d3d8dc;
+    border-top: solid 2px #d3d8dc;
+    border-bottom: solid 2px #d3d8dc;
+}
+
+th {
+    border-right: solid 2px #d3d8dc; 
+    border-left: solid 2px #d3d8dc;
+    border-top: solid 2px #d3d8dc;
+    border-bottom: solid 2px #d3d8dc;
+}
+
+tr {
+    border-right: solid 2px #d3d8dc; 
+    border-left: solid 2px #d3d8dc;
+    border-top: solid 2px #d3d8dc;
+    border-bottom: solid 2px #d3d8dc;
+}
+
+table.caption-top.table {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 0.5rem;
+}
+
+figcaption{
+    text-align: center;
+ }

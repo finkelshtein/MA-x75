@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Lecture Notes for module MA-M375/M75">
+
+<title>2&nbsp; Differential Equations – MA-M375/M75 Dynamical Systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./DS-Ch-03.html" rel="next">
+<link href="./DS-Ch-01.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="2&nbsp; Differential Equations – MA-M375/M75 Dynamical Systems">
+<meta property="og:description" content="Lecture Notes for module MA-M375/M75">
+<meta property="og:site_name" content="MA-M375/M75 Dynamical Systems">
+</head>
+
+<body class="nav-sidebar docked fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DS-Ch-01.html">Chapter 1: One-dimensional dynamical systems</a></li><li class="breadcrumb-item"><a href="./DS-Ch-02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Differential Equations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/attractors.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MA-M375/M75 Dynamical Systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 1: One-dimensional dynamical systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Differential Equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Phase portrait</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bifurcations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Two-dimensional dynamical systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">General ideas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Local phase portrait</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Global phase portrait</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DS-Ch-01.html">Chapter 1: One-dimensional dynamical systems</a></li><li class="breadcrumb-item"><a href="./DS-Ch-02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Differential Equations</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Differential Equations</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.1 Terminology
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Let <span class="math inline">\(f:{\mathbb{R}}\to{\mathbb{R}}\)</span>. Consider the differential equation</li>
+</ul>
+<div class="highlight">
+<p><span id="eq-1dDS"><span class="math display">\[
+x'(t)=f\bigl(x(t)\bigr), \qquad t\in{\mathbb{R}}.
+\tag{2.1}\]</span></span></p>
+</div>
+<ul>
+<li>We will normally omit <span class="math inline">\(t\)</span> by writing just</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+x'=f(x).
+\]</span></p>
+</div>
+<ul>
+<li><p>Recall, that one can interpret <span class="math inline">\(t\)</span> as time (if <span class="math inline">\(t&lt;0\)</span> it hence corresponds to the “past”).</p></li>
+<li><p>If we set the value of <span class="math inline">\(x\)</span> at some <span class="math inline">\(t_0\)</span>, i.e.&nbsp;<span class="math inline">\(x(t_0)=:x_0\in{\mathbb{R}}\)</span>, (<a href="#eq-1dDS" class="quarto-xref"><span>2.1</span></a>) is called the <span class="term" data-key="initial value problem!1D">initial value problem</span> (and, recall, <span class="math inline">\(x_0\)</span> is called <em>the initial condition</em>). Typically, <span class="math inline">\(t_0=0\)</span>.</p></li>
+<li><p>Equation (<a href="#eq-1dDS" class="quarto-xref"><span>2.1</span></a>) defines a continuous <span class="term" data-key="dynamical system!first-order">dynamical system</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.2 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Differential equation (<a href="#eq-1dDS" class="quarto-xref"><span>2.1</span></a>) defines a <strong>first-order</strong> dynamical system, because its right-hand side does not depend explicitly on <span class="math inline">\(t\)</span>.</p></li>
+<li><p>For example, <span class="math inline">\(x'= \sin x\)</span> defines a first-order dynamical system, whereas <span class="math inline">\(x'=t+\sin x\)</span> defines a <span class="term" data-key="dynamical system!second order">second-order</span> dynamical system (because its right-hand side depends on two arguments: <span class="math inline">\(t\)</span> and <span class="math inline">\(x\)</span>).</p></li>
+<li><p>This (standard) terminology slightly contradicts with the (standard) terminology of the theory of differential equation, where (<a href="#eq-1dDS" class="quarto-xref"><span>2.1</span></a>) is called the <em>first-order</em> differential equation because its maximal order of derivatives is <span class="math inline">\(1\)</span> (i.e.&nbsp;both <span class="math inline">\(x'= \sin x\)</span> and <span class="math inline">\(x'=t+\sin x\)</span> are first-order differential equations).</p></li>
+<li><p>Note that, in the theory of differential equations, the equation (<a href="#eq-1dDS" class="quarto-xref"><span>2.1</span></a>) is called <em>autonomous</em> since its right-hand side does not depend on <span class="math inline">\(t\)</span> (whereas, e.g.&nbsp;<span class="math inline">\(x'=t+\sin x\)</span> is <em>non-autonomous</em>).</p></li>
+<li><p>To summarize: a first-order dynamical system is a first-order autonomous differential equation (with a clash of notions).</p></li>
+</ul>
+</div>
+</div>
+<div id="thm_exuniq" class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.3 Theorem: Existence and uniqueness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(f=f(x)\)</span> be a continuously differentiable (a.k.a. <em>smooth</em>) real-valued function on an interval <span class="math inline">\(x\in(a,b)\subseteq {\mathbb{R}}\)</span> (i.e.&nbsp;both <span class="math inline">\(f\)</span> and <span class="math inline">\(f'\)</span> are continuous on <span class="math inline">\((a,b)\)</span>).</p>
+<p>Let <span class="math inline">\(t_0\in R\)</span> and <span class="math inline">\(x_0\in (a,b)\)</span>. Then</p>
+<ul>
+<li>the initial value problem</li>
+</ul>
+<div class="highlight">
+<p><span id="eq-1dIVP"><span class="math display">\[
+x'(t) = f\bigl(x(t)\bigr),\quad
+x(t_0) = x_0
+\tag{2.2}\]</span></span></p>
+</div>
+<p>has a unique solution on the time interval <span class="math inline">\([t_0-\delta,t_0+\delta]\)</span> for some <span class="math inline">\(\delta&gt;0\)</span>;</p>
+<ul>
+<li><p>there exists a maximum (possibly infinite) time interval <span class="math inline">\((T_-,T_+)\subseteq {\mathbb{R}}\)</span>&nbsp;where (<a href="#eq-1dIVP" class="quarto-xref"><span>2.2</span></a>) has a unique solution;</p></li>
+<li><p>the solution <span class="math inline">\(x=x(t)\)</span> is continuously differentiable in <span class="math inline">\(t\in (T_-,T_+)\)</span>;</p></li>
+<li><p>if <span class="math inline">\(T_\pm\neq\pm\infty\)</span>, then there are exactly two possibilities:</p></li>
+<li><p><span class="math inline">\(|x(t)|\)</span> becomes unbounded (arbitrary large) when <span class="math inline">\(t\to T_\pm\)</span> (it is called the <em>explosion in finite time</em>);</p></li>
+<li><p><span class="math inline">\(\lim\limits_{t\to T_\pm} x(t)\in \{a,b\}\)</span> (the solution leaves the domain where <span class="math inline">\(f\)</span> is smooth).</p></li>
+</ul>
+</div>
+</div>
+<div id="exa_nonuniq" class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.4 Example: Non-uniqueness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the initial value problem</p>
+<div class="highlight">
+<p><span id="eq-nonuniq"><span class="math display">\[
+x'=x^{\frac{1}{3}}, \qquad x(0)=0.
+\tag{2.3}\]</span></span></p>
+</div>
+<p>Then evidently <span class="math inline">\(x(t)=0\)</span> for all <span class="math inline">\(t\geq0\)</span> is a solution to (<a href="#eq-nonuniq" class="quarto-xref"><span>2.3</span></a>). However, if <span class="math inline">\(x\not\equiv 0\)</span>, we get <span class="math display">\[
+\frac{dx}{dt}=x^{\frac{1}{3}}, \qquad \frac{dx}{x^{\frac{1}{3}}}=dt, \qquad \frac{3}{2}x^{\frac{2}{3}}=t+C.
+\]</span> Take <span class="math inline">\(t=0\)</span>, then <span class="math inline">\(C=0\)</span>, as as <span class="math inline">\(x(0)=0\)</span>. Hence, there is another solution to (<a href="#eq-nonuniq" class="quarto-xref"><span>2.3</span></a>): <span class="math inline">\(x=x(t)=\Bigl(\frac{2}{3}t\Bigr)^{\frac{3}{2}}\)</span>.</p>
+<p>The reason for the non-uniqueness of solutions is that, the function <span class="math inline">\(f(x)=x^{\frac{1}{3}}\)</span> has unbounded (discontinuous) derivative: <span class="math inline">\(f'(x)=\frac{1}{3}x^{-\frac{2}{3}}\)</span> is unbounded near <span class="math inline">\(x_0=0\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="exa_explosion" class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.5 Example: Explosion in finite time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the initial value problem</p>
+<div class="highlight">
+<p><span id="eq-explode"><span class="math display">\[
+x'=x^2+1, \qquad x(0)=0.
+\tag{2.4}\]</span></span></p>
+</div>
+<p>Then <span class="math display">\[
+\frac{dx}{x^2+1}=dt, \qquad \tan^{-1} x = t+C
+\]</span> and taking <span class="math inline">\(t=0\)</span> one gets <span class="math inline">\(C=0\)</span>. Hence, <span class="math inline">\(\color{RedViolet}x =\tan t\)</span> is the unique solution to the initial value problem (<a href="#eq-explode" class="quarto-xref"><span>2.4</span></a>). This solution can not be continued beyond the interval <span class="math inline">\(\bigl(-\frac{\pi}{2},\frac{\pi}{2}\bigr)\)</span> since <span class="math inline">\(\lim\limits_{t\to\pm\frac{\pi}{2}}\tan(t) = \infty\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="exa_nonexpand" class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.6 Example: Non-expandable time interval
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the initial value problem</p>
+<div class="highlight">
+<p><span id="eq-stuck"><span class="math display">\[
+x'=-\frac{1}{2x}, \qquad x(0)=1.
+\tag{2.5}\]</span></span></p>
+</div>
+<p>Note that here <span class="math inline">\(f(x)=-\frac{1}{2x}\)</span> is <em>continuously differentiable</em> on <span class="math inline">\((a,b)=(0,\infty)\)</span> and <span class="math inline">\(1\in(a,b)\)</span>. We have <span class="math display">\[
+2xdx = -dt, \qquad x^2=-t+C,
+\]</span> and taking <span class="math inline">\(t=0\)</span> one gets <span class="math inline">\(1=x(0)^2=C\)</span>, hence <span class="math inline">\(x=\pm\sqrt{1-t}\)</span> and since <span class="math inline">\(x(0)=1&gt;0\)</span>, one gets the unique solution to (<a href="#eq-stuck" class="quarto-xref"><span>2.5</span></a>): <span class="math inline">\(\color{RedViolet}x(t)=\sqrt{1-t}\)</span>. In contrast to <a href="#exa_explosion">Example 2.5</a>, the solution is bounded, however, it cannot be extended beyond <span class="math inline">\(t\in[0,1)\)</span>, see r.h.s. of (<a href="#eq-stuck" class="quarto-xref"><span>2.5</span></a>); indeed, <span class="math inline">\(\lim\limits_{t\to1}x(t)=x(1)=0=a\notin(a,b)=(0,\infty)\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.7 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>If <span class="math inline">\(f\)</span> is continuously differentiable on an infinite interval (e.g.&nbsp;on <span class="math inline">\({\mathbb{R}}\)</span>) then both possibilities presented in <a href="#thm_exuniq">Theorem 2.3</a>, actually, coincide.</p></li>
+<li><p>In this course, we will deal mainly with differential equations <span class="math inline">\(x'=f(x)\)</span> where <span class="math inline">\(f\)</span> is continuously differentiable on <span class="math inline">\({\mathbb{R}}\)</span>. Then the cases considered in <a href="#exa_nonuniq">Example 2.4</a> and <a href="#exa_nonexpand">Example 2.6</a> are impossible. How to recognise the case similar to that in <a href="#exa_explosion">Example 2.5</a>, we will discuss below.</p></li>
+</ul>
+</div>
+</div>
+<div id="def_onedimtraj" class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.8 Definition: Trajectories
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Let <span class="math inline">\(x(t)\)</span> be a solution to the differential equation <span class="math inline">\(x'(t)=f(x(t))\)</span> on a time interval <span class="math inline">\(t\in(T_-,T_+)\subseteq{\mathbb{R}}\)</span>. Then the set of points</li>
+</ul>
+<div class="highlight">
+<p><span class="math display">\[
+\Bigl\{ \bigl(t,x(t)\bigr)\in{\mathbb{R}}^2 \Bigm\vert t\in(T_-,T_+) \Bigr\}
+\]</span></p>
+</div>
+<p>is called a <span class="term" data-key="trajectory!1D">trajectory</span>.</p>
+<ul>
+<li>The graph of a trajectory on the coordinate plane <span class="math inline">\(\bigl(t,x(t)\bigr)\)</span> is called the <span class="term">space-time diagram</span>.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.9 Flow property
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(f\)</span> be continuosly differentiable on an interval <span class="math inline">\((a,b)\)</span>, so that the equation <span class="math inline">\(x'=f(x)\)</span> has the unique solution on a time interval <span class="math inline">\((T_-,T_+)\)</span>. Let <span class="math inline">\(x(t_0)=x_0\in (a,b)\)</span> for some <span class="math inline">\(t_0\in(T_-,T_+)\)</span>. Take any <span class="math inline">\(t_1\)</span> such that <span class="math inline">\(t_0&lt;t_1&lt;T_+\)</span>. Denote <span class="math inline">\(x_1 := x(t_1)\in(a,b)\)</span>. {Consider now <strong>the same</strong> differential equation <span class="math inline">\(y'=f(y)\)</span> (written just for another <em>notation</em> for the solution) and consider the initial condition for it: <span class="math inline">\(y(t_1)=\color{RedViolet}x_1\)</span>.} {By the uniqueness, one gets that <span class="math inline">\({\color{RedViolet}x(t_2)=y(t_2)}=:x_2\)</span> for any <span class="math inline">\(t_2\in(t_1,T_+)\)</span>.}</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In other words, if a solution evolves on <span class="math inline">\([t_0,t_1]\)</span>, then stops at the moment of time <span class="math inline">\(t_1\)</span> and immediately starts (at the same value) evolving again on <span class="math inline">\([t_1,t_2]\)</span>, then the result is the same if the solution evolved, starting from the moment of time <span class="math inline">\(t_0\)</span>, on <span class="math inline">\([t_0,t_2]\)</span>.</p>
+<p>This is called the <span class="term">flow property</span>. If we denote by <span class="math inline">\(U(t)\)</span> the mapping which maps any <span class="math inline">\(x_0\in(a,b)\)</span> into the solution of the initial value problem <span class="math inline">\(x'=f(x)\)</span>, <span class="math inline">\(x({\color{RedViolet}0})=x_0\)</span> (notice that the initial time is <span class="math inline">\(0\)</span> here), i.e.&nbsp;<span class="math inline">\(U(t)x(0)=x(t)\)</span>, then denoting <span class="math inline">\(t=t_1-t_0\geq0\)</span> and <span class="math inline">\(s=t_2-t_1\geq0\)</span> in the above, one gets</p>
+<div class="highlight">
+<p><span id="eq-sgproperty"><span class="math display">\[
+U(s)U(t)x_0 = U(t+s)x_0.
+\tag{2.6}\]</span></span></p>
+</div>
+<p>Equality (<a href="#eq-sgproperty" class="quarto-xref"><span>2.6</span></a>) is called the <span class="term">semigroup property</span> of the flow.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.10 Remark: Why “flow”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is often called that <span class="math inline">\(U\)</span> passes the solution to the equation <span class="math inline">\(x'=f(x)\)</span> along its trajectory (like the water flow is passed along a stream).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.11 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It was crucial, of course, that the initial value for the “second” solution was the termination value for the “first” solution, and because of this, the solution is, actually, the same.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+2.12 Trajectories on the space-time diagram
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(f\)</span> be continuously differentiable on an interval <span class="math inline">\((a,b)\)</span> (e.g.&nbsp;<span class="math inline">\((a,b)={\mathbb{R}}\)</span>). Then, by <a href="#thm_exuniq">Theorem 2.3</a> there exists time-interval <span class="math inline">\((T_-,T_+)\)</span> (finite or infinite), such that, <span class="inlinealert">for any</span> <span class="math inline">\(t_0\in (T_-,T_+)\)</span> and <span class="inlinealert">for any</span> <span class="math inline">\(x_0\in(a,b)\)</span> the initial value problem <span class="math inline">\(x'=f(x)\)</span>, <span class="math inline">\(x(t_0)=x_0\)</span> has the unique solution on <span class="math inline">\((T_-,T_+)\)</span>. The corresponding trajectory is a <em>continuous</em> (and even <em>smooth</em>) curve on the space-time diagram; it passes through the point <span class="math inline">\((t_0,x_0)\)</span>. By the uniqueness property, if we take another point, then</p>
+<ul>
+<li><p>either this point, <span class="math inline">\((t_1,x_1)\)</span>, belongs to the same trajectory, i.e.&nbsp;<span class="math inline">\(x_1=x(t_1)\)</span>,</p></li>
+<li><p>or this point, <span class="math inline">\((t_1,x_2)\)</span>, is such that <span class="math inline">\(x_2\neq x(t_1)\)</span>, and one can consider <strong>the same</strong> differential equation <span class="math inline">\(y'=f(y)\)</span> with another initial condition <span class="math inline">\(y(t_1)=x_2\)</span>. In the latter case, one gets <strong>another</strong> trajectory.</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Therefore, through each point inside the open (possibly infinite) rectangle <span class="math inline">\((T_-,T_+)\times (a,b)\)</span> on the space-time diagram there passes a trajectory. These trajectories either fully coincide or do not have common points at all (i.e.&nbsp;they neither intersect nor touch each other).</p>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./DS-Ch-01.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./DS-Ch-03.html" class="pagination-link" aria-label="Phase portrait">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Phase portrait</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Dmitri Finkelshtein</p>
+</div>   
+    <div class="nav-footer-center">
+<p>MA-M375/M75: Lecture Notes</p>
+</div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

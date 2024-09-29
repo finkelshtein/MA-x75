@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Lecture Notes for module MA-M375/M75">
+
+<title>4&nbsp; Bifurcations – MA-M375/M75 Dynamical Systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./DS-Ch-05.html" rel="next">
+<link href="./DS-Ch-03.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="4&nbsp; Bifurcations – MA-M375/M75 Dynamical Systems">
+<meta property="og:description" content="Lecture Notes for module MA-M375/M75">
+<meta property="og:site_name" content="MA-M375/M75 Dynamical Systems">
+</head>
+
+<body class="nav-sidebar docked fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DS-Ch-01.html">Chapter 1: One-dimensional dynamical systems</a></li><li class="breadcrumb-item"><a href="./DS-Ch-04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bifurcations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/attractors.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">MA-M375/M75 Dynamical Systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 1: One-dimensional dynamical systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Differential Equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Phase portrait</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bifurcations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Two-dimensional dynamical systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">General ideas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Local phase portrait</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DS-Ch-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Global phase portrait</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DS-Ch-01.html">Chapter 1: One-dimensional dynamical systems</a></li><li class="breadcrumb-item"><a href="./DS-Ch-04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bifurcations</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bifurcations</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.1 Meaning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Recall that solutions of one-dimensional dynamical systems may either converge (as time tends to infinity) to stable fixed points (a.k.a. <span class="term">equilibrium</span> or <span class="term" data-key="attractor!1D">attractor</span>) or converge to <span class="math inline">\(\infty\)</span> (as time tends to a finite or infinite limit).</p></li>
+<li><p>They also depend on various parameters that makes the analysis interesting and non-trivial.</p></li>
+<li><p>Important are the critical values of parameters, so that the dynamical system demonstrates different qualitative behaviours for parameters smaller and larger than the values.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.2 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider a dynamical system <span class="math inline">\(x'=f(x)\)</span>, where <span class="math inline">\(f(x)\)</span> is a <strong>smooth</strong> function of a parameter <span class="math inline">\(r\in{\mathbb{R}}\)</span>, i.e.&nbsp;we assume that <span class="math inline">\(f(x)=f(x,r)\)</span>. <span class="term" data-key="bifurcation">Bifurcation</span> is the phenomenon when the dynamical system demonstrates <strong>different phase portraits</strong> when <span class="math inline">\(r\)</span> changes its values from <span class="math inline">\(r&lt;r_{\mathrm{cr}}\)</span> to <span class="math inline">\(r&gt;r_{\mathrm{cr}}\)</span> for some critical value <span class="math inline">\(r_{\mathrm{cr}}\)</span> called the <span class="term">bifurcation point</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.3 Definition: Saddle-node bifurcation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a dynamical system <span class="math inline">\(x'=f(x,r)\)</span>, a (<strong>local</strong>) <span class="term" data-key="bifurcation!saddle-node">saddle-node bifurcation</span> takes place for a critical value of the parameter <span class="math inline">\(r=r_{\mathrm{cr}}\)</span> if, for values of <span class="math inline">\(r\)</span> from one side of <span class="math inline">\(r_{\mathrm{cr}}\)</span> there are not fixed points, whereas as soon as <span class="math inline">\(r\)</span> takes values from the other side of <span class="math inline">\(r_{\mathrm{cr}}\)</span> <strong>there appear</strong> two fixed points. Thus one could said that two fixed points collide (when <span class="math inline">\(r\to r_{\mathrm{cr}}\)</span>, from one side) and disappear (annihilate).</p>
+</div>
+</div>
+<div id="exa_x2r" class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.4 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider <span class="highlight" data-key="inline"><span class="math inline">\(x'=x^2+r\)</span></span>. Then</p>
+<ul>
+<li><p>for <span class="math inline">\(r&gt;0\)</span>, the equation <span class="math inline">\(x^2+r=0\)</span> has not (real) roots, i.e.&nbsp;there are no fixed points. Note also that then <span class="math inline">\(x'&gt;0\)</span> i.e.&nbsp;<span class="math inline">\(x(t)\)</span> increases for all <span class="math inline">\(t\)</span> (it will be on a finite time interval, similarly to <a href="./DS-Ch-03.html#exa_lasting">Example 3.7</a>);</p></li>
+<li><p>for <span class="math inline">\(r&lt;0\)</span>, the equation <span class="math inline">\(x^2+r=0\)</span> has two fixed points: <span class="math inline">\(x=\pm\sqrt{-r}\)</span>. As it was in <a href="./DS-Ch-03.html#exa_lasting">Example 3.7</a>, one can show that <span class="math inline">\(x=-\sqrt{-r}\)</span> is stable and <span class="math inline">\(x=\sqrt{-r}\)</span> is unstable. The same can be also shown using the linear stability analysis: <span class="math inline">\(f(x)=x^2+r\)</span>, then <span class="math display">\[
+f'(x)=2x, \quad f'(\pm\sqrt{-r})=\pm2\sqrt{-r}
+\]</span> and hence we get the same statement;</p></li>
+<li><p>also we note that for <span class="math inline">\(r=0\)</span>, there is a unique fixed point, <span class="math inline">\(x^2=0\)</span> yields <span class="math inline">\(x=0\)</span>, but since <span class="math inline">\(x^2&gt;0\)</span> for all <span class="math inline">\(x\neq0\)</span> we conclude that <span class="math inline">\(f(x)\)</span> does not change its sign, and hence this fixed point is neither stable nor unstable, it is a half-stable fixed point.</p></li>
+</ul>
+<p>The phase portraits changes accordingly when <span class="math inline">\(r\)</span> changes its values from <span class="math inline">\(r&lt;r_{\mathrm{cr}}=0\)</span> to <span class="math inline">\(r&gt;r_{\mathrm{cr}}\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-24-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.5 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The same saddle-node biffurcation takes place for <span class="highlight" data-key="inline"><span class="math inline">\(x'=x^2-r\)</span></span>, just the “order” of the phase portraits will be opposite.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.6 Bifurcation diagram
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall that a phase portrate shows how the solution <span class="math inline">\(x=x(t)\)</span> behaves with time (increasing or decreasing) in certain intervals of values of that <span class="math inline">\(x\)</span>. In the case of bifurcation for a dynamical system <span class="math inline">\(x'=f(x,r)\)</span>, the behaviour of <span class="math inline">\(x\)</span> depends on <span class="math inline">\(r\)</span>. The diagram which shows the dependence of <span class="math inline">\(x\)</span> on <span class="math inline">\(r\)</span> is called the <span class="term">bifurcation diagram</span>.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.7 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <a href="#exa_x2r">Example 4.4</a>, we have shown that, for <span class="math inline">\(r\geq0\)</span>, <span class="math inline">\(x=x(t)\)</span> increases; whereas for <span class="math inline">\(r&lt;0\)</span>, we got that <span class="math inline">\(x=x(t)\)</span> increases when <span class="math inline">\(x&gt;\sqrt{-r}\)</span> and also when <span class="math inline">\(x&lt;-\sqrt{-r}\)</span>, and we got that <span class="math inline">\(x=x(t)\)</span> decreases when <span class="math inline">\(-\sqrt{-r}&lt;x&lt;\sqrt{-r}\)</span>. We have then the bifurcation diagram:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-25-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The dashed curve consists of unstable fixed points and the solid curve consists of stable fixed points.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.8 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If one fixes some <span class="math inline">\(r_\circ\in{\mathbb{R}}\)</span> and consider the corresponding vertical line <span class="math inline">\(r=r_\circ\)</span> on the bifurcation diagram, we will get the phase portrait for <span class="math inline">\(x'=f(x,r_\circ)\)</span> placed vertically.</p>
+</div>
+</div>
+<div id="exa_eddf" class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.9 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system</p>
+<div class="highlight">
+<p><span id="eq-eqe4321"><span class="math display">\[
+{x'=r-x-e^{-x}}, \qquad r\in{\mathbb{R}}.
+\tag{4.1}\]</span></span></p>
+</div>
+<p>This example generalises <a href="./DS-Ch-03.html#exa_grmth">Example 3.29</a> (where <span class="math inline">\(r=2\)</span>). We will use again graphical arguments by exploring the graphs of <span class="math inline">\(y=e^{-x}\)</span> and <span class="math inline">\(y=r-x\)</span>. All (straight) lines <span class="math inline">\(y=r-x\)</span> for <span class="math inline">\(r\in{\mathbb{R}}\)</span> are parallel. For <span class="math inline">\(r\)</span> big enough, we will have two points of intersection, the smaller is unstable, the larger is stable (by the same arguments as it was done in <a href="./DS-Ch-03.html#exa_grmth">Example 3.29</a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-26-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Next, for some critical value <span class="math inline">\(r=r_{\mathrm{cr}}\)</span>, the line <span class="math inline">\(y=r-x\)</span> is the tangent line to the curve <span class="math inline">\(y=e^{-x}\)</span> and hence there is only one fixed point to (<a href="#eq-eqe4321" class="quarto-xref"><span>4.1</span></a>). The tangent line to <span class="math inline">\(y=e^{-x}\)</span> at a point <span class="math inline">\(x_*\)</span> has the gradient <span class="math display">\[
+y'(x_*)=-e^{-x_*},
+\]</span> whereas the gradient of the line <span class="math inline">\(y=r-x\)</span> is <span class="math inline">\(-1\)</span>. Hence, to have it tangent, one needs <span class="math inline">\(-e^{-x_*}=-1\)</span>, i.e.&nbsp;<span class="math inline">\(x_*=0\)</span>. Therefore, the (tangent) line passess through <span class="math inline">\((0,e^{-0}=1)\)</span>. Since the line is <span class="math inline">\(y=r_{\mathrm{cr}}-x\)</span> and <span class="math inline">\(y(0)=1\)</span>, we conclude that <span class="math inline">\(r_{\mathrm{cr}}=1\)</span>.</p>
+<p>Finally, for <span class="math inline">\(r&lt;r_{\mathrm{cr}}\)</span>, the line <span class="math inline">\(y=r-x\)</span> will not intersect the curve <span class="math inline">\(y=e^{-x}\)</span>, and then <span class="math inline">\(e^{-x}&gt;r-x\)</span>, and hence <span class="math inline">\(x'=r-x-e^{-x}&lt;0\)</span> for all <span class="math inline">\(x\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-27-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="nt_condsnb" class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.10 Conditions for the saddle-node bifurcation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>One can ask ourselves, why does the dynamical systems <span class="math inline">\(x'=x^2+r\)</span> and <span class="math inline">\(x'=r-x-e^{-x}\)</span> have the same variety of phase portraits. The answer is thew following: consider the second dynamical system in the neighbourhood of <span class="math inline">\(x=0\)</span>, by Taylor’s expansion: <span class="math display">\[
+\begin{aligned}
+x'&amp;=r-x-e^{-x}=r-x-\Bigl(1-x+\frac{x^2}{2}+\ldots\Bigr)\\
+&amp;=(r-1)-\frac{x^2}{2}+\ldots.
+\end{aligned}
+\]</span> Hence, for <span class="math inline">\(x\)</span> near <span class="math inline">\(0\)</span>, the solutions to <span class="math inline">\(x'=r-x-e^{-x}\)</span> behave like solutions to <span class="math inline">\(y'=r_1-y^2\)</span> up to certain rescaling (see e.g.&nbsp;<a href="./DS-Ch-03.html#rmk_logequiv">Remark 3.24</a>).</p>
+<p>More generally, to have the saddle-node bifurcation for <span class="math inline">\(x'=f(x,r)\)</span> at some <span class="math inline">\(r=r_{\mathrm{cr}}\)</span> one needs e.g.&nbsp;the following phase diagram</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-28-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>(Note: the diagram might be flipped and the signs between <span class="math inline">\(r\)</span> and <span class="math inline">\(r_{\mathrm{cr}}\)</span> might be reverted.)</p>
+<p>By the continuity arguments, for <span class="math inline">\(r=r_{\mathrm{cr}}\)</span>, the graph of <span class="math inline">\(y=f(x,r)\)</span> should have <span class="math inline">\(y=0\)</span> as the tangent line. Let <span class="math inline">\(x=x_*\)</span> be the tangent point Consider Taylor’s expansion for <span class="math inline">\(f(x,r)\)</span> at the neighbourhood of <span class="math inline">\(x=x_*\)</span> and <span class="math inline">\(r=r_{\mathrm{cr}}\)</span>:</p>
+<div class="highlight">
+<p><span class="math display">\[
+\begin{aligned}
+x'&amp;=f(x,r)=f(x_*,r_{\mathrm{cr}})\\
+&amp; \quad+ (x-x_*) \frac{\partial f}{\partial x}(x_*,r_{\mathrm{cr}})
++ (r-r_{\mathrm{cr}}) \frac{\partial f}{\partial r}(x_*,r_{\mathrm{cr}})\notag\\
+&amp;\quad +\frac{1}{2}(x-x_*)^2\frac{\partial^2 f}{\partial x^2}(x_*,r_{\mathrm{cr}})\notag\\
+&amp;\quad +(x-x_*)(r-r_{\mathrm{cr}})\frac{\partial^2 f}{\partial x\partial r}(x_*,r_{\mathrm{cr}})
+\\&amp;\quad +\frac{1}{2}(r-r_{\mathrm{cr}})^2\frac{\partial^2 f}{\partial r^2}(x_*,r_{\mathrm{cr}})+\ldots \qquad \qquad {\color{RedViolet}(*)}
+\end{aligned}
+\]</span></p>
+</div>
+<p>If the graph of <span class="math inline">\(y=f(x,r_{\mathrm{cr}})\)</span> touches <span class="math inline">\(y=0\)</span> at <span class="math inline">\(x=x_*\)</span>, then both the value and the gradient of <span class="math inline">\(f(x,r_{\mathrm{cr}})\)</span> are equal to <span class="math inline">\(0\)</span> at <span class="math inline">\(x=x_*\)</span>, i.e.</p>
+<div class="highlight">
+<p><span id="eq-q2rwq"><span class="math display">\[
+\begin{aligned}
+f(x_*,r_{\mathrm{cr}})&amp;=0,\\
+\frac{\partial f}{\partial x}(x_*,r_{\mathrm{cr}}) &amp;= 0.
+\end{aligned}
+\tag{4.2}\]</span></span></p>
+</div>
+<p>Therefore, for the saddle-node bifurcation the system behaves near the bifurcation point <span class="math inline">\(r=r_{\mathrm{cr}}\)</span> approximately as follows:</p>
+<p><span class="math display">\[
+\begin{aligned}
+x'&amp;\approx (r-r_{\mathrm{cr}}) \frac{\partial f}{\partial r}(x_*,r_{\mathrm{cr}}) +\frac{1}{2}(x-x_*)^2\frac{\partial^2 f}{\partial x^2}(x_*,r_{\mathrm{cr}})
+\\&amp;= a(r-r_{\mathrm{cr}})+b(x-x_*)^2,
+\end{aligned}
+\]</span> that corresponds to the model equaiton we considered in <a href="#exa_x2r">Example 4.4</a>, provided that</p>
+<div class="highlight">
+<p><span id="eq-q3rwq"><span class="math display">\[
+\begin{aligned}
+\frac{\partial f}{\partial r}(x_*,r_{\mathrm{cr}}) &amp;\neq0, \\ \frac{\partial^2 f}{\partial x^2}(x_*,r_{\mathrm{cr}})&amp;\neq 0.
+\end{aligned}
+\tag{4.3}\]</span></span></p>
+</div>
+<p>Together, (<a href="#eq-q2rwq" class="quarto-xref"><span>4.2</span></a>) and (<a href="#eq-q3rwq" class="quarto-xref"><span>4.3</span></a>) provide, respectively, necessary and sufficient conditions to have a saddle-node bifurcation.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.11 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(x'=f(x,r)\)</span> where <span class="math inline">\(f\)</span> is a smooth function of two variables. Let (<a href="#eq-q2rwq" class="quarto-xref"><span>4.2</span></a>) and (<a href="#eq-q3rwq" class="quarto-xref"><span>4.3</span></a>) hold. The dynamical system</p>
+<div class="highlight">
+<p><span id="eq-modelsaddlenode"><span class="math display">\[
+x'= a(r-r_{\mathrm{cr}})+b(x-x_*)^2,
+\tag{4.4}\]</span></span></p>
+</div>
+<p>where <span class="math inline">\(a:=\frac{\partial f}{\partial r}(x_*,r_{\mathrm{cr}})\neq0\)</span>, <span class="math inline">\(b:= \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(x_*,r_{\mathrm{cr}})\neq0\)</span> is called the <span class="term">normal form</span> of <span class="math inline">\(x'=f(x,r)\)</span> in the case of the saddle-node bifurcation.</p>
+</div>
+</div>
+<div id="rmk_bdewr" class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.12 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bifurcation diagrams for the case of a saddle-node bifurcation look similarly, because of the normal form (<a href="#eq-modelsaddlenode" class="quarto-xref"><span>4.4</span></a>), they differ only by the forms of the curves <span class="math inline">\(x=x(r)\)</span> of fixed points which solves <span class="math inline">\(f(x,r)=0\)</span> and also because they may flipped vertically or horizontally depending on signs of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
+<p>For example, the bifurcation diagram for the considered above dynamical system <span class="math inline">\(x'=r-x-e^{-x}\)</span> is as follows (compare it with the bifurcation diagram for <span class="math inline">\(x'=r+x^2\)</span> above):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-29-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that here the curves <span class="math inline">\(x=x(r)\)</span> here are determined by the equality <span class="math inline">\(r-x=e^{-x}\)</span> and can not be expressed in elementary functions, but the fact that they are uniquely determined and also are monotone follow from out previous graphical analysis for <a href="#exa_eddf">Example 4.9</a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.13 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By a bifurcation diagram, one can reconstruct space-time diagrams, at least qualitatively. For example, the bifurcation diagram described in <a href="#rmk_bdewr">Remark 4.12</a> tells us that, for <span class="math inline">\(r&lt;1\)</span>, <span class="math inline">\(x=x(t)\)</span> decreases regardless of <span class="math inline">\(x(0)\)</span>, whereas, for <span class="math inline">\(r&gt;0\)</span>, <span class="math inline">\(x(t)\)</span> will, for example, monotonically converge to certain finite value (a point on the orange curve) if only <span class="math inline">\(x(0)\)</span> is larger then certain <em>negative</em> value (a point on the purple curve). In particular, <span class="math inline">\(r&gt;1\)</span> and <span class="math inline">\(x(0)\geq0\)</span> imply together that <span class="math display">\[
+\lim_{t\to\infty}x(t)&lt;\infty.
+\]</span> (Sketch the corresponding space-time diagrams by yourself!)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.14 Definition: Transcritical bifurcation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a dynamical system <span class="math inline">\(x'=f(x,r)\)</span>, a (<strong>local</strong>) <span class="term" data-key="bifurcation!transcritical">transcritical bifurcation</span> takes place for a critical value of the parameter <span class="math inline">\(r=r_{\mathrm{cr}}\)</span> if the dynamical system has two fixed points for all of values of <span class="math inline">\(r\)</span> around <span class="math inline">\(r_{\mathrm{cr}}\)</span>, but they swap their stability types when <span class="math inline">\(r\)</span> passes through <span class="math inline">\(r_{\mathrm{cr}}\)</span>. (The distance between the fixed point converge to <span class="math inline">\(0\)</span> a <span class="math inline">\(r\to t_{\mathrm{cr}}\)</span>.)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.15 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider <span class="highlight" data-key="inline"><span class="math inline">\(x'=rx-x^2\)</span></span>. Since <span class="math inline">\(rx-x^2=0\)</span> yields <span class="math inline">\(x(r-x)=0\)</span>, the system has two fixed points <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=r\)</span>. The phase portraits however are different for <span class="math inline">\(r&lt;0\)</span>, <span class="math inline">\(r=0\)</span>, and <span class="math inline">\(r&gt;0\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-30-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Namely,</p>
+<ul>
+<li><p>for <span class="math inline">\(r&gt;0\)</span>, <span class="math inline">\(x=0\)</span> is an unstable fixed point and <span class="math inline">\(x=r\)</span> is a stable fixed point;</p></li>
+<li><p>for <span class="math inline">\(r=0\)</span>, <span class="math inline">\(x=0\)</span> is a half-stable fixed point;</p></li>
+<li><p>for <span class="math inline">\(r&lt;0\)</span>, <span class="math inline">\(x=0\)</span> becomes a stable fixed point and <span class="math inline">\(x=r\)</span> is an unstable fixed point.</p></li>
+</ul>
+<p>We can hence draw the bifurcation diagram on the plane <span class="math inline">\((x,r)\)</span>: the line <span class="math inline">\(x=r\)</span> is stable for <span class="math inline">\(r&gt;0\)</span> and unstable for <span class="math inline">\(r&lt;0\)</span>, whereas the line <span class="math inline">\(x=0\)</span> is stable for <span class="math inline">\(r&lt;0\)</span> and unstable for <span class="math inline">\(r&gt;0\)</span>:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-31-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.16 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system</p>
+<div class="highlight">
+<p><span class="math display">\[
+x'=x(1-x^2)-a(1-e^{-bx}), \qquad a,b\in{\mathbb{R}}.
+\]</span></p>
+</div>
+<p>Denote the right hand side by <span class="math inline">\(f_{a,b}(x)\)</span>. We see that <span class="math inline">\(x=0\)</span> is a fixed point, as <span class="math inline">\(f_{a,b}(0)=0\)</span> for all <span class="math inline">\(a,b\)</span>. Consider the Taylor expansion of <span class="math inline">\(f_{a,b}(x)\)</span> in <span class="math inline">\(x\)</span> for small values of <span class="math inline">\(x\)</span>.</p>
+<p>We have <span class="math display">\[
+\begin{aligned}
+x'&amp;=x(1-x^2)-a(1-e^{-bx})\\&amp;=x+o(x^2)-a\Bigl(bx-\frac12 b^2 x^2+o(x^2)\Bigr),
+\end{aligned}
+\]</span> where, recall, <span class="math inline">\(\lim\limits_{x\to 0}\frac{o(x^2)}{x^2}=0\)</span>; in particular, <span class="math inline">\(x^3=o(x^2)\)</span> when <span class="math inline">\(x\to0\)</span>. Therefore, <span class="math display">\[
+x'=(1-ab)x+\frac{ab^2}{2}x^2+o(x^2).
+\]</span> As a result, for <span class="math inline">\(x\)</span> near the fixed point <span class="math inline">\(x_*=0\)</span>, <span class="math inline">\(x=x(t)\)</span> behaves like the solution to</p>
+<div class="highlight">
+<p><span id="eq-wqqwr352"><span class="math display">\[
+{x'=(1-ab)x+\frac{ab^2}{2}x^2}
+\tag{4.5}\]</span></span></p>
+</div>
+<p>and hence the transcritical bifurcation occurs when <span class="math inline">\(ab=1\)</span>. Stress that the bifurcation occurs not for a particular values of parameters <span class="math inline">\(a,b\)</span>, but for all pairs <span class="math inline">\((a,b)\)</span> which lie on the <span class="term">bifurcation curve</span> <span class="math inline">\(ab=1\)</span> on the plane <span class="math inline">\((a,b)\)</span> (here there actually two curves, hyperbolas, <span class="math inline">\(b=\frac{1}{a}\)</span>).</p>
+<p>The second (non-zero) fixed point for (<a href="#eq-wqqwr352" class="quarto-xref"><span>4.5</span></a>) exists hence for <span class="math inline">\(ab\neq 1\)</span> as, otherwise, two fixed points coincide and we have the half-stable fixed point at <span class="math inline">\(0\)</span> only).</p>
+<p>Hence, for <span class="math inline">\(ab\neq 1\)</span>, the second (non-zero) fixed point of (<a href="#eq-wqqwr352" class="quarto-xref"><span>4.5</span></a>) satisfies the equation <span class="math inline">\(1-ab+\frac{ab^2}{2}x=0\)</span>, i.e.</p>
+<div class="highlight">
+<p><span id="eq-eqscaqrw"><span class="math display">\[
+x_*=\frac{2(ab-1)}{ab^2}.
+\tag{4.6}\]</span></span></p>
+</div>
+<p>To determine the stability depending on <span class="math inline">\(a,b\)</span>, it is easier to use the linear stability analysis (to do not consider various signs of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>). Stress that the result should be the same for the original function <span class="math inline">\(f_{a,b}(x)\)</span> and for “approximate” function <span class="math inline">\(\tilde{f}_{a,b}(x):=(1-ab)x+\frac{ab^2}{2}x^2\)</span>, namely, <span class="math display">\[
+\begin{aligned}
+f'_{a,b}(x)&amp;=1-3x^2-ab e^{-bx}; &amp;&amp;
+f'_{a,b}(0) &amp; =1-ab;\\
+\tilde{f}'_{a,b}(x)&amp;=1-ab+ab^2x^2; &amp;&amp;
+\tilde{f}'_{a,b}(0) &amp; =1-ab.
+\end{aligned}
+\]</span></p>
+<p>Therefore, for <span class="math inline">\(ab&gt;1\)</span>, <span class="math inline">\(x=0\)</span> is a stable fixed point and hence (<a href="#eq-eqscaqrw" class="quarto-xref"><span>4.6</span></a>) is an <strong>unstable</strong> fixed point, whereas for <span class="math inline">\(ab&lt;1\)</span>, <span class="math inline">\(x=0\)</span> is an unstable fixed point and (<a href="#eq-eqscaqrw" class="quarto-xref"><span>4.6</span></a>) is a <strong>stable</strong> fixed point.</p>
+<p>Since our previous considerations worked for small values of <span class="math inline">\(x\)</span> only, we require that (<a href="#eq-eqscaqrw" class="quarto-xref"><span>4.6</span></a>) is a small number, i.e.&nbsp;that <span class="math inline">\(ab\)</span> is close to <span class="math inline">\(1\)</span>. More detailed graphical analysis for the function <span class="math inline">\(f_{a,b}(x)\)</span> would allow to receive the same result without that restriction.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.17 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(x'=f(x,r)\)</span> where <span class="math inline">\(f\)</span> is a smooth function of two variables. Let (<a href="#eq-q2rwq" class="quarto-xref"><span>4.2</span></a>) hold, i.e.&nbsp;<span class="highlight" data-key="inline"><span class="math inline">\(f(x_*,r_{\mathrm{cr}})=\frac{\partial f}{\partial x}(x_*,r_{\mathrm{cr}})=0\)</span></span>. Let also (see formula (<span class="math inline">\(*\)</span>) in <a href="#nt_condsnb">item 4.10</a> above)</p>
+<div class="highlight">
+<p><span class="math display">\[
+{\begin{aligned}
+\frac{\partial f}{\partial r}(x_*,r_{\mathrm{cr}})&amp;=0,\\
+a:=\frac{\partial^2 f}{\partial x\partial r}(x_*,r_{\mathrm{cr}})&amp;\neq0,\\
+b:=\frac{1}{2}\frac{\partial^2 f}{\partial x^2}(x_*,r_{\mathrm{cr}})&amp;\neq0.
+\end{aligned}}
+\]</span></p>
+</div>
+<p>Then the dynamical system</p>
+<div class="highlight">
+<p><span class="math display">\[
+{x'= a(r-r_{\mathrm{cr}})(x-x_*)+b(x-x_*)^2,}
+\]</span></p>
+</div>
+<p>is called the <span class="term">normal form</span> of <span class="math inline">\(x'=f(x,r)\)</span> in the case of the transcritical bifurcation.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.18 Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a dynamical system <span class="math inline">\(x'=f(x,r)\)</span>, a (<strong>local</strong>) <span class="term" data-key="bifurcation!pitchfork">pitchfork bifurcation</span> takes place for a critical value of the parameter <span class="math inline">\(r=r_{\mathrm{cr}}\)</span> if the number of fixed points changes from <span class="math inline">\(1\)</span> to <span class="math inline">\(3\)</span> when <span class="math inline">\(r\)</span> passes through <span class="math inline">\(r_{\mathrm{cr}}\)</span>. (The distances between fixed points converge to <span class="math inline">\(0\)</span> as <span class="math inline">\(r\to r_{\mathrm{cr}}\)</span>.)</p>
+<ul>
+<li><p>More precisely, if, for $r&lt;r_{} $ there are three fixed points: two unstable and one stable, and, if, for <span class="math inline">\(r&gt;r_{\mathrm{cr}}\)</span> two unstable ones disappear and the stable one becomes unstable (and the unique), it is called a <span class="term" data-key="bifurcation!pitchfork!subcritical">subcritical pitchfork bifurcation</span> (as three fixed points exist <em>before</em> the critical value <span class="math inline">\(r_{\mathrm{cr}}\)</span>).</p></li>
+<li><p>On contrary, if, for <span class="math inline">\(r&lt;r_{\mathrm{cr}}\)</span> there is a unique stable fixed point and it becomes an unstable one when <span class="math inline">\(r&gt;r_{\mathrm{cr}}\)</span> and also two new stable fixed points appear, then it is called a <span class="term" data-key="bifurcation!pitchfork!supercritical">supercritical pitchfork bifurcation</span> (as it takes place <em>after</em> the critical value <span class="math inline">\(r_{\mathrm{cr}}\)</span>).</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.19 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider <span class="highlight" data-key="inline"><span class="math inline">\(x'=rx-x^3:=f(x)\)</span></span>. Since <span class="math inline">\(f(x)=x(r-x^2)\)</span>, we conclude that, for <span class="math inline">\(r&lt;0\)</span>, there is a unique fixed point: <span class="math inline">\(x=0\)</span>, and since <span class="math inline">\(f'(x)=r-3x^2\)</span>, one has <span class="math inline">\(f'(0)=r&lt;0\)</span>, i.e.&nbsp;<span class="math inline">\(x=0\)</span> is a stable fixed point. However, for <span class="math inline">\(r&gt;0\)</span>, there are three fixed points: <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=\pm\sqrt{r}\)</span>, and <span class="math display">\[
+f'(0)=r&gt;0, \quad f'(\pm\sqrt{r})=r-3r=-2r&lt;0,
+\]</span> thus <span class="math inline">\(x=0\)</span> is an unstable fixed point and <span class="math inline">\(x=\pm\sqrt{r}\)</span> are stable fixed points.</p>
+<p>Therefore, a supercritical pitchfork bifurcation occurs for this dynamical system with the bifurcation point at <span class="math inline">\(r=0\)</span>. Consider also how the phase portraits change.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-32-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The bifurcation diagram is hence as follows:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-33-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.20 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The phase portraits for <span class="math inline">\(r&lt;0\)</span> and for <span class="math inline">\(r=0\)</span> are the same. However, for small <span class="math inline">\(x\)</span>, we have that <span class="math inline">\(x'\approx rx\)</span> (as <span class="math inline">\(x^3=o(x)\)</span>) and <span class="math inline">\(x(t)\approx x(0)e^{rt}\to0\)</span> for <span class="math inline">\(r&lt;0\)</span> exponentially fast as <span class="math inline">\(t\to\infty\)</span>. In contrast, <span class="math inline">\(x'=-x^3\)</span> implies <span class="math inline">\(x(t)=\frac{x(0)}{\sqrt{1+2x(0)^2 t}}\to 0\)</span> as <span class="math inline">\(t\to\infty\)</span>, but much slower.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.21 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The model example for the subcritical pitchfork bifurcation is <span class="highlight" data-key="inline"><span class="math inline">\(x'=rx{\color{RedViolet}+}x^3\)</span>.</span> Sketch the different phase portraits for <span class="math inline">\(r&lt;0\)</span>, <span class="math inline">\(r=0\)</span>, <span class="math inline">\(r&gt;0\)</span> by yourself! The “pitchfork” on the corresponding bifurcation diagram is then “flipped”:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-34-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.22 Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the dynamical system</p>
+<div class="highlight">
+<p><span id="eq-r3afsd"><span class="math display">\[
+x'=r x -\frac{x^3}{1+x^4}=:f(x), \quad r\in{\mathbb{R}}.
+\tag{4.7}\]</span></span></p>
+</div>
+<p>Clearly, <span class="math inline">\(x=0\)</span> is a fixed point. Expanding the right-hand side in Taylor’s series for small <span class="math inline">\(x\)</span>, one gets <span class="math display">\[
+x'=rx -x^3(1-x^4+x^8+\ldots)\approx rx-x^3,
+\]</span> hence the the supercritical pitchfork bifurcation occurs with the bifurcation point at <span class="math inline">\(r_{\mathrm{cr}}=0\)</span> and the fixed point at <span class="math inline">\(x_*=0\)</span>.</p>
+<p>However, the right-hand side of (<a href="#eq-r3afsd" class="quarto-xref"><span>4.7</span></a>) is also equal to zero if</p>
+<div class="highlight">
+<p><span id="eq-432gfbv"><span class="math display">\[
+r=\frac{x^2}{1+x^4}
+\tag{4.8}\]</span></span></p>
+</div>
+<p>This implies that <span class="math inline">\(r\geq0\)</span>. The case <span class="math inline">\(r=0\)</span> leads to <span class="math inline">\(x=0\)</span>, and it was considered before (but we will return to it below). For <span class="highlight" data-key="inline"><span class="math inline">\(r&gt;0\)</span></span>, we have <span class="math display">\[
+r x^4-x^2+r=0, \qquad x^2=\frac{1\pm\sqrt{1-4r^2}}{2r}.
+\]</span></p>
+<p>Since <span class="math inline">\(r&gt;0\)</span> and <span class="math inline">\(1-4r^2\leq1\)</span>, one gets that non-zero fixed points exist if and only if</p>
+<div class="highlight">
+<p><span class="math display">\[
+{0&lt;r\leq \frac12}.
+\]</span></p>
+</div>
+<p>Each such <span class="math inline">\(r\)</span> provides <strong>four</strong> fixed points except <span class="math inline">\(r=\frac12\)</span> that implies <span class="math inline">\(x^2=1\)</span>, i.e.&nbsp;<span class="math inline">\(x=\pm1\)</span>. However, to get the stability type, one needs some long computations.</p>
+<p>It may be easier done graphically directly on the bifurcation diagram. Since (<a href="#eq-432gfbv" class="quarto-xref"><span>4.8</span></a>) provides dependence <span class="math inline">\(r\)</span> on <span class="math inline">\(x\)</span>, we revert the order of axes on the bifurcation diagram. We have <span class="math display">\[
+f(x)=x\bigl(r-g(x)\bigr), \qquad
+g(x):=\frac{x^2}{1+x^4}\geq0.
+\]</span></p>
+<p>To sketch the graph of <span class="math inline">\(r=g(x)\)</span>, we note that <span class="math display">\[
+\begin{gathered}
+g(x)=0 \Leftrightarrow x=0; \qquad \lim_{x\to\pm\infty}g(x)=0;\\
+g'(x)=\frac{2 (1-x) x (x+1)(x^2+1)}{(1+x^4)^2}.
+\end{gathered}
+\]</span> Therefore, <span class="math inline">\(x=0\)</span> is the point of local minimum for <span class="math inline">\(g(x)\)</span> and <span class="math inline">\(x=\pm1\)</span> are points of local maximum with <span class="math inline">\(g(\pm1)=\frac12\)</span>.</p>
+<p>Sketch now the graph of <span class="math inline">\(r=g(x)\)</span> on the bifurcation diagram (note that the scales are different for <span class="math inline">\(x\)</span> and <span class="math inline">\(r\)</span> axes). Then, one can get the signs of <span class="math inline">\(f(x)=x(r-g(x))\)</span> (and hence the directions of arrows, note that they are horizontal now):</p>
+<ul>
+<li><p>for <span class="math inline">\(x&gt;0\)</span>, <span class="math inline">\(f(x)&gt;0\)</span> if <span class="math inline">\(r&gt;g(x)\)</span> and <span class="math inline">\(f(x)&lt;0\)</span> if <span class="math inline">\(r&lt;g(x)\)</span>;</p></li>
+<li><p>for <span class="math inline">\(x&lt;0\)</span>, <span class="math inline">\(f(x)&gt;0\)</span> if <span class="math inline">\(r&lt;g(x)\)</span> and <span class="math inline">\(f(x)&lt;0\)</span> if <span class="math inline">\(r&gt;g(x)\)</span>.</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-04_files/figure-html/tikz-35-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Recall that <span class="math inline">\(x=0\)</span> is always a fixed point, as <span class="math inline">\(f(x)=x(r-g(x))\)</span>. We see, now, graphically, that for <span class="math inline">\(r&gt;\frac12\)</span> or <span class="math inline">\(r&lt;0\)</span> there no other fixed points. The line <span class="math inline">\(r=\frac12\)</span> is tangent to the curve <span class="math inline">\(r=g(x)\)</span>, hence at <span class="math inline">\(r=\frac12\)</span> saddle-node bifurcations occur for both appearing (half-stable) fixed points <span class="math inline">\(x=1\)</span> and <span class="math inline">\(x=-1\)</span>.</p>
+<p>They are saddle-node, since as soon as <span class="math inline">\(r&lt;\frac12\)</span>, each fixed point is “split” by two: stable and unstable. Stress that the line <span class="math inline">\(r=0\)</span> is also tangent to the graph of <span class="math inline">\(r=g(x)\)</span> at <span class="math inline">\(x=0\)</span>, however, here the bifurcation is not saddle-node, as <span class="math inline">\(x=0\)</span> has additional “multiplicity” as a fixed point for <span class="math inline">\(f(x)=x(r-g(x))\)</span>, and it has a pitchfork bifurcation around <span class="math inline">\(x=0\)</span>, that we have shown before.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+4.23 Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The value <span class="math inline">\(r=0\)</span> in the previous example shows the difference between the so-called <em>local</em> and <em>global</em> bifurcations. Namely, the analysis we provided for small <span class="math inline">\(x\)</span> which uses the Taylor expansion, shows the local bifurcation (supercritical pitchfork) around <span class="math inline">\(x=0\)</span>. It stated that for <span class="math inline">\(r&gt;0\)</span> two additional fixed points appeared around <span class="math inline">\(0\)</span>. However, the global phase portrait visible from the bifurcation diagram shows that for <span class="math inline">\(r&lt;0\)</span> there are indeed no fixed points for (<a href="#eq-r3afsd" class="quarto-xref"><span>4.7</span></a>), but as soon as <span class="math inline">\(r&gt;0\)</span>, appeared <strong>five</strong> fixed points: <span class="math inline">\(x=0\)</span> and four solutions of <span class="math inline">\(g(x)=r\)</span>. Note that, for small <span class="math inline">\(r&gt;0\)</span>, two solutions have very large absolute values (and hence remained invisible for the local analysis).</p>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./DS-Ch-03.html" class="pagination-link" aria-label="Phase portrait">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Phase portrait</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./DS-Ch-05.html" class="pagination-link" aria-label="General ideas">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">General ideas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Dmitri Finkelshtein</p>
+</div>   
+    <div class="nav-footer-center">
+<p>MA-M375/M75: Lecture Notes</p>
+</div>
+    <div class="nav-footer-right">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
