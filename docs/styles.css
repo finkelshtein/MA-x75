@@ -180,3 +180,11 @@ table.caption-top.table {
 figcaption{
     text-align: center;
  }
+
+.interactive {
+  border-width: 0pt;
+  width: 80%;
+  margin: auto;
+  background-color: rgb(from var(--callout-warning-color) r g b / 0.1);
+  padding: 1em;
+}

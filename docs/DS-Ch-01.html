@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -68,6 +102,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -511,6 +547,114 @@ x(n)&amp;&gt;B \Longrightarrow x(n+1) &lt; x(n).
 </div>
 </div>
 </div>
+<div class="interactive">
+<p>You can change the values of <span class="math inline">\(r\)</span> and <span class="math inline">\(n\)</span> (the number of steps).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="490" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 489;"><span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>viewof r <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>  [<span class="fl">0.1</span><span class="op">,</span> <span class="fl">1.5</span>]<span class="op">,</span> </span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span> <span class="vs">`r`</span>}</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>viewof n <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">3</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> </span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span> <span class="vs">`n`</span>}</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p>The values of <span class="math inline">\(x(n)\)</span> change their values as <span class="math inline">\(n\)</span> increasing:</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="503" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 502;"><span id="cb2-503"><a href="#cb2-503" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-504"><a href="#cb2-504" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> B <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb2-505"><a href="#cb2-505" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> x0 <span class="op">=</span> <span class="fl">0.75</span> <span class="op">*</span> B</span>
+<span id="cb2-506"><a href="#cb2-506" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> dd <span class="op">=</span> [{ <span class="dt">x</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> x0 }]</span>
+<span id="cb2-507"><a href="#cb2-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-508"><a href="#cb2-508" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-509"><a href="#cb2-509" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> prev <span class="op">=</span> dd[i <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">y</span></span>
+<span id="cb2-510"><a href="#cb2-510" aria-hidden="true" tabindex="-1"></a>  dd<span class="op">.</span><span class="fu">push</span>({ <span class="dt">x</span><span class="op">:</span> i<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> prev <span class="op">+</span> r <span class="op">*</span> prev <span class="op">*</span> (B <span class="op">-</span> prev) })</span>
+<span id="cb2-511"><a href="#cb2-511" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-512"><a href="#cb2-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-513"><a href="#cb2-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-514"><a href="#cb2-514" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> maxy <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span><span class="op">.</span><span class="fu">apply</span>(<span class="bu">Math</span><span class="op">,</span> dd<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">y</span>))</span>
+<span id="cb2-515"><a href="#cb2-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-516"><a href="#cb2-516" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-517"><a href="#cb2-517" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb2-518"><a href="#cb2-518" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"n"</span><span class="op">,</span> </span>
+<span id="cb2-519"><a href="#cb2-519" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> </span>
+<span id="cb2-520"><a href="#cb2-520" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]</span>
+<span id="cb2-521"><a href="#cb2-521" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb2-522"><a href="#cb2-522" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb2-523"><a href="#cb2-523" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"x(n)"</span><span class="op">,</span></span>
+<span id="cb2-524"><a href="#cb2-524" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> </span>
+<span id="cb2-525"><a href="#cb2-525" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="fl">1.2</span><span class="op">*</span>B<span class="op">,</span> maxy)]</span>
+<span id="cb2-526"><a href="#cb2-526" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb2-527"><a href="#cb2-527" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-528"><a href="#cb2-528" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(dd<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"orange"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span> })<span class="op">,</span></span>
+<span id="cb2-529"><a href="#cb2-529" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(dd<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"blue"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span>  })</span>
+<span id="cb2-530"><a href="#cb2-530" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-531"><a href="#cb2-531" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-532"><a href="#cb2-532" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>And the motion on the state space <span class="math inline">\(\mathbb{R}\)</span> looks as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="541" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 540;"><span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> B <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> x0 <span class="op">=</span> <span class="fl">0.75</span> <span class="op">*</span> B</span>
+<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> dd <span class="op">=</span> [{ <span class="dt">x</span><span class="op">:</span> x0<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span> }]</span>
+<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> prev <span class="op">=</span> dd[i <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">x</span></span>
+<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a>  dd<span class="op">.</span><span class="fu">push</span>({ <span class="dt">x</span><span class="op">:</span> prev <span class="op">+</span> r <span class="op">*</span> prev <span class="op">*</span> (B <span class="op">-</span> prev)<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span> })</span>
+<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> maxx <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span><span class="op">.</span><span class="fu">apply</span>(<span class="bu">Math</span><span class="op">,</span> dd<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">x</span>))</span>
+<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> minx <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span><span class="op">.</span><span class="fu">apply</span>(<span class="bu">Math</span><span class="op">,</span> dd<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">x</span>))</span>
+<span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> </span>
+<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"x(n)"</span><span class="op">,</span></span>
+<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [minx<span class="op">,</span> maxx]<span class="op">,</span></span>
+<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span></span>
+<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tick</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span>                     <span class="co">// Hide y-axis ticks</span></span>
+<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span>                     <span class="co">// Hide y-axis grid</span></span>
+<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>([{ <span class="dt">x</span><span class="op">:</span> minx<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span> }<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> maxx<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span> }]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span> })<span class="op">,</span></span>
+<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(dd<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span>)<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"gray"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>})<span class="op">,</span></span>
+<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(dd<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span>)<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"blue"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>  })</span>
+<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 <p>The rigorous analysis of discrete-time dynamical systems can be done, but it requires good knowledge of difference equations. Instead, in this course, we will deal with continuous-time dynamical systems and differential equations. Again, to get the continuous time analogue for the logistic-type model, one should assume that the changes take places very often, say, after time <span class="math inline">\(h&gt;0\)</span> rather than time <span class="math inline">\(1\)</span>, i.e. <span class="math display">\[
 x(t+h) - x(t) = r_h x(t) \bigl(B- x(t)\bigr).
 \]</span> We wrote <span class="math inline">\(r_h\)</span> as the rate should depend on <span class="math inline">\(h\)</span>. For example, one can consider <span class="math inline">\(r_h= rh\)</span> for some constant <span class="math inline">\(r&gt;0\)</span>. Then <span class="math display">\[
@@ -528,6 +672,17 @@ x'(t) = r x(t) \bigl(B- x(t)\bigr).
 
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIHIgPSBJbnB1dHMucmFuZ2UoXG4gIFswLjEsIDEuNV0sIFxuICB7dmFsdWU6IDAuNSwgc3RlcDogMC4xLCBsYWJlbDogdGV4IGByYH1cbilcblxudmlld29mIG4gPSBJbnB1dHMucmFuZ2UoXG4gIFszLCAxMDBdLCBcbiAge3ZhbHVlOiAzLCBzdGVwOiAxLCBsYWJlbDogdGV4IGBuYH1cbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxue1xuY29uc3QgQiA9IDJcbmNvbnN0IHgwID0gMC43NSAqIEJcbmxldCBkZCA9IFt7IHg6IDAsIHk6IHgwIH1dXG5cbmZvciAobGV0IGkgPSAxOyBpIDw9IG47IGkrKykge1xuICBsZXQgcHJldiA9IGRkW2kgLSAxXS55XG4gIGRkLnB1c2goeyB4OiBpLCB5OiBwcmV2ICsgciAqIHByZXYgKiAoQiAtIHByZXYpIH0pXG59XG5cblxubGV0IG1heHkgPSBNYXRoLm1heC5hcHBseShNYXRoLCBkZC5tYXAoYSA9PiBhLnkpKVxuXG5yZXR1cm4gUGxvdC5wbG90KHtcbiAgeDoge1xuICAgICAgbGFiZWw6IFwiblwiLCBcbiAgICAgIGdyaWQ6IHRydWUsIFxuICAgICAgZG9tYWluOiBbMCwgMTAwXVxuICAgIH0sXG4gIHk6IHtcbiAgICAgIGxhYmVsOiBcIngobilcIixcbiAgICAgIGdyaWQ6IHRydWUsIFxuICAgICAgZG9tYWluOiBbMCwgTWF0aC5tYXgoMS4yKkIsIG1heHkpXVxuICAgIH0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKGRkLCB7IHg6IFwieFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcIm9yYW5nZVwiLCBzdHJva2VXaWR0aDogMiB9KSxcbiAgICBQbG90LmRvdChkZCwgeyB4OiBcInhcIiwgeTogXCJ5XCIsIGZpbGw6IFwiYmx1ZVwiLCBzdHJva2U6IFwiYmxhY2tcIiwgc3Ryb2tlV2lkdGg6IDEgIH0pXG4gIF1cbn0pXG59XG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IntcbmNvbnN0IEIgPSAyXG5jb25zdCB4MCA9IDAuNzUgKiBCXG5sZXQgZGQgPSBbeyB4OiB4MCwgeTogMCB9XVxuXG5mb3IgKGxldCBpID0gMTsgaSA8PSBuOyBpKyspIHtcbiAgbGV0IHByZXYgPSBkZFtpIC0gMV0ueFxuICBkZC5wdXNoKHsgeDogcHJldiArIHIgKiBwcmV2ICogKEIgLSBwcmV2KSwgeTogMCB9KVxufVxuXG5sZXQgbWF4eCA9IE1hdGgubWF4LmFwcGx5KE1hdGgsIGRkLm1hcChhID0+IGEueCkpXG5cbmxldCBtaW54ID0gTWF0aC5taW4uYXBwbHkoTWF0aCwgZGQubWFwKGEgPT4gYS54KSlcblxucmV0dXJuIFBsb3QucGxvdCh7XG4gIGhlaWdodDogNTAsIFxuICB4OiB7XG4gICAgICBsYWJlbDogXCJ4KG4pXCIsXG4gICAgICBkb21haW46IFttaW54LCBtYXh4XSxcbiAgICAgIGdyaWQ6IHRydWVcbiAgICB9LFxuICB5OiB7XG4gICAgICBsYWJlbDogXCJcIixcbiAgICAgIGRvbWFpbjogWzAsIDBdLFxuICAgICAgdGljazogZmFsc2UsICAgICAgICAgICAgICAgICAgICAgLy8gSGlkZSB5LWF4aXMgdGlja3NcbiAgICAgIGdyaWQ6IGZhbHNlLCAgICAgICAgICAgICAgICAgICAgIC8vIEhpZGUgeS1heGlzIGdyaWRcbiAgICB9LFxuICBtYXJrczogW1xuICAgIFBsb3QubGluZShbeyB4OiBtaW54LCB5OiAwIH0sIHsgeDogbWF4eCwgeTogMCB9XSwge3g6IFwieFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcImJsYWNrXCIsIHN0cm9rZVdpZHRoOiAxIH0pLFxuICAgIFBsb3QuZG90KGRkLnNsaWNlKDAsIC0xKSwgeyB4OiBcInhcIiwgeTogXCJ5XCIsIGZpbGw6IFwiZ3JheVwiLCBzdHJva2U6IFwiYmxhY2tcIiwgc3Ryb2tlV2lkdGg6IDAsIHI6IDV9KSxcbiAgICBQbG90LmRvdChkZC5zbGljZSgtMiwgLTEpLCB7IHg6IFwieFwiLCB5OiBcInlcIiwgZmlsbDogXCJibHVlXCIsIHN0cm9rZTogXCJibGFja1wiLCBzdHJva2VXaWR0aDogMSwgcjogNSAgfSlcbiAgXVxufSlcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCduJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
