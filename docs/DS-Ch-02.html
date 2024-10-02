@@ -311,14 +311,16 @@ x'=f(x).
 <p>Let <span class="math inline">\(f=f(x)\)</span> be a continuously differentiable (a.k.a. <em>smooth</em>) real-valued function on an interval <span class="math inline">\(x\in(a,b)\subseteq {\mathbb{R}}\)</span> (i.e.&nbsp;both <span class="math inline">\(f\)</span> and <span class="math inline">\(f'\)</span> are continuous on <span class="math inline">\((a,b)\)</span>).</p>
 <p>Let <span class="math inline">\(t_0\in R\)</span> and <span class="math inline">\(x_0\in (a,b)\)</span>. Then</p>
 <ul>
-<li><p>the initial value problem</p>
+<li>the initial value problem</li>
+</ul>
 <div class="highlight">
 <p><span id="eq-1dIVP"><span class="math display">\[
 x'(t) = f\bigl(x(t)\bigr),\quad
 x(t_0) = x_0
 \tag{2.2}\]</span></span></p>
 </div>
-<p>has a unique solution on the time interval <span class="math inline">\([t_0-\delta,t_0+\delta]\)</span> for some <span class="math inline">\(\delta&gt;0\)</span>;</p></li>
+<p>has a unique solution on the time interval <span class="math inline">\([t_0-\delta,t_0+\delta]\)</span> for some <span class="math inline">\(\delta&gt;0\)</span>;</p>
+<ul>
 <li><p>there exists a maximum (possibly infinite) time interval <span class="math inline">\((T_-,T_+)\subseteq {\mathbb{R}}\)</span>&nbsp;where (<a href="#eq-1dIVP" class="quarto-xref"><span>2.2</span></a>) has a unique solution;</p></li>
 <li><p>the solution <span class="math inline">\(x=x(t)\)</span> is continuously differentiable in <span class="math inline">\(t\in (T_-,T_+)\)</span>;</p></li>
 <li><p>if <span class="math inline">\(T_\pm\neq\pm\infty\)</span>, then there are exactly two possibilities:</p></li>
@@ -347,11 +349,11 @@ x'=x^{\frac{1}{3}}, \qquad x(0)=0.
 \frac{dx}{dt}=x^{\frac{1}{3}}, \qquad \frac{dx}{x^{\frac{1}{3}}}=dt, \qquad \frac{3}{2}x^{\frac{2}{3}}=t+C.
 \]</span> Take <span class="math inline">\(t=0\)</span>, then <span class="math inline">\(C=0\)</span>, as as <span class="math inline">\(x(0)=0\)</span>. Hence, there is another solution to (<a href="#eq-nonuniq" class="quarto-xref"><span>2.3</span></a>): <span class="math inline">\(x=x(t)=\Bigl(\frac{2}{3}t\Bigr)^{\frac{3}{2}}\)</span>.</p>
 <p>The reason for the non-uniqueness of solutions is that, the function <span class="math inline">\(f(x)=x^{\frac{1}{3}}\)</span> has unbounded (discontinuous) derivative: <span class="math inline">\(f'(x)=\frac{1}{3}x^{-\frac{2}{3}}\)</span> is unbounded near <span class="math inline">\(x_0=0\)</span>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -377,11 +379,11 @@ x'=x^2+1, \qquad x(0)=0.
 <p>Then <span class="math display">\[
 \frac{dx}{x^2+1}=dt, \qquad \tan^{-1} x = t+C
 \]</span> and taking <span class="math inline">\(t=0\)</span> one gets <span class="math inline">\(C=0\)</span>. Hence, <span class="math inline">\(\color{RedViolet}x =\tan t\)</span> is the unique solution to the initial value problem (<a href="#eq-explode" class="quarto-xref"><span>2.4</span></a>). This solution can not be continued beyond the interval <span class="math inline">\(\bigl(-\frac{\pi}{2},\frac{\pi}{2}\bigr)\)</span> since <span class="math inline">\(\lim\limits_{t\to\pm\frac{\pi}{2}}\tan(t) = \infty\)</span>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -407,11 +409,11 @@ x'=-\frac{1}{2x}, \qquad x(0)=1.
 <p>Note that here <span class="math inline">\(f(x)=-\frac{1}{2x}\)</span> is <em>continuously differentiable</em> on <span class="math inline">\((a,b)=(0,\infty)\)</span> and <span class="math inline">\(1\in(a,b)\)</span>. We have <span class="math display">\[
 2xdx = -dt, \qquad x^2=-t+C,
 \]</span> and taking <span class="math inline">\(t=0\)</span> one gets <span class="math inline">\(1=x(0)^2=C\)</span>, hence <span class="math inline">\(x=\pm\sqrt{1-t}\)</span> and since <span class="math inline">\(x(0)=1&gt;0\)</span>, one gets the unique solution to (<a href="#eq-stuck" class="quarto-xref"><span>2.5</span></a>): <span class="math inline">\(\color{RedViolet}x(t)=\sqrt{1-t}\)</span>. In contrast to <a href="#exa_explosion">Example 2.5</a>, the solution is bounded, however, it cannot be extended beyond <span class="math inline">\(t\in[0,1)\)</span>, see r.h.s. of (<a href="#eq-stuck" class="quarto-xref"><span>2.5</span></a>); indeed, <span class="math inline">\(\lim\limits_{t\to1}x(t)=x(1)=0=a\notin(a,b)=(0,\infty)\)</span>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -445,14 +447,16 @@ x'=-\frac{1}{2x}, \qquad x(0)=1.
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Let <span class="math inline">\(x(t)\)</span> be a solution to the differential equation <span class="math inline">\(x'(t)=f(x(t))\)</span> on a time interval <span class="math inline">\(t\in(T_-,T_+)\subseteq{\mathbb{R}}\)</span>. Then the set of points</p>
+<li>Let <span class="math inline">\(x(t)\)</span> be a solution to the differential equation <span class="math inline">\(x'(t)=f(x(t))\)</span> on a time interval <span class="math inline">\(t\in(T_-,T_+)\subseteq{\mathbb{R}}\)</span>. Then the set of points</li>
+</ul>
 <div class="highlight">
 <p><span class="math display">\[
 \Bigl\{ \bigl(t,x(t)\bigr)\in{\mathbb{R}}^2 \Bigm\vert t\in(T_-,T_+) \Bigr\}
 \]</span></p>
 </div>
-<p>is called a <span class="term" data-key="trajectory!1D">trajectory</span>.</p></li>
-<li><p>The graph of a trajectory on the coordinate plane <span class="math inline">\(\bigl(t,x(t)\bigr)\)</span> is called the <span class="term">space-time diagram</span>.</p></li>
+<p>is called a <span class="term" data-key="trajectory!1D">trajectory</span>.</p>
+<ul>
+<li>The graph of a trajectory on the coordinate plane <span class="math inline">\(\bigl(t,x(t)\bigr)\)</span> is called the <span class="term">space-time diagram</span>.</li>
 </ul>
 </div>
 </div>
@@ -467,11 +471,11 @@ x'=-\frac{1}{2x}, \qquad x(0)=1.
 </div>
 <div class="callout-body-container callout-body">
 <p>Let <span class="math inline">\(f\)</span> be continuosly differentiable on an interval <span class="math inline">\((a,b)\)</span>, so that the equation <span class="math inline">\(x'=f(x)\)</span> has the unique solution on a time interval <span class="math inline">\((T_-,T_+)\)</span>. Let <span class="math inline">\(x(t_0)=x_0\in (a,b)\)</span> for some <span class="math inline">\(t_0\in(T_-,T_+)\)</span>. Take any <span class="math inline">\(t_1\)</span> such that <span class="math inline">\(t_0&lt;t_1&lt;T_+\)</span>. Denote <span class="math inline">\(x_1 := x(t_1)\in(a,b)\)</span>. {Consider now <strong>the same</strong> differential equation <span class="math inline">\(y'=f(y)\)</span> (written just for another <em>notation</em> for the solution) and consider the initial condition for it: <span class="math inline">\(y(t_1)=\color{RedViolet}x_1\)</span>.} {By the uniqueness, one gets that <span class="math inline">\({\color{RedViolet}x(t_2)=y(t_2)}=:x_2\)</span> for any <span class="math inline">\(t_2\in(t_1,T_+)\)</span>.}</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -527,11 +531,11 @@ U(s)U(t)x_0 = U(t+s)x_0.
 <li><p>either this point, <span class="math inline">\((t_1,x_1)\)</span>, belongs to the same trajectory, i.e.&nbsp;<span class="math inline">\(x_1=x(t_1)\)</span>,</p></li>
 <li><p>or this point, <span class="math inline">\((t_1,x_2)\)</span>, is such that <span class="math inline">\(x_2\neq x(t_1)\)</span>, and one can consider <strong>the same</strong> differential equation <span class="math inline">\(y'=f(y)\)</span> with another initial condition <span class="math inline">\(y(t_1)=x_2\)</span>. In the latter case, one gets <strong>another</strong> trajectory.</p></li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DS-Ch-02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>

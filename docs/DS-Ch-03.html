@@ -314,11 +314,11 @@ x'=f(x).
 </div>
 <div class="callout-body-container callout-body">
 <p>Consider the Malthus equation <span class="math inline">\(x'=-x\)</span>. Here <span class="math inline">\(f(x)=-x\)</span>, hence the only fixed point is <span class="math inline">\(x_*=0\)</span>. We consider now three trajectories for different signs of <span class="math inline">\(x_0:=x(0)\)</span>, including <span class="math inline">\(x_0=x_*=0\)</span>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="DS-Ch-03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -358,7 +358,10 @@ x'=f(x).
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Similarly, for a general equation <span class="math inline">\(x'=f(x)\)</span>, we are interested where <span class="math inline">\(f(x)\)</span> is positive (hence, <span class="math inline">\(x\)</span> increases), and where <span class="math inline">\(f(x)\)</span> is negative (hence, <span class="math inline">\(x\)</span> decreases).</p></li>
-<li><p>To this end, one can consider the graph of <span class="math inline">\(f(x)\)</span>. Since we are studying the equation <span class="math inline">\(x'=f(x)\)</span>, one may think about <span class="math inline">\(x^{\prime}\)</span> as a function of <span class="math inline">\(x\)</span>.</p></li>
+<li><p>To this end, one can consider the graph of <span class="math inline">\(f(x)\)</span>. Since we are studying the equation <span class="math inline">\(x'=f(x)\)</span>, one may think about <span class="math inline">\(x^{\prime}\)</span></p></li>
+</ul>
+<p>as a function of <span class="math inline">\(x\)</span>.</p>
+<ul>
 <li><p>Since <span class="math inline">\(x\)</span> “runs” over <span class="math inline">\({\mathbb{R}}\)</span> which is, recall, called the <strong>phase space</strong>, the graph of <span class="math inline">\(f(x)\)</span> on the coordinate plane <span class="math inline">\((x',x)\)</span> is called the <span class="term">phase diagram</span>.</p></li>
 <li><p>We find (all) fixed points (that are solutions to <span class="math inline">\(f(x)=0\)</span>).</p></li>
 </ul>
@@ -455,8 +458,9 @@ x'=f(x).
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>To get the sketch of the space-time diagram, we actually need to know the fixed points and how <span class="math inline">\(f(x)\)</span> (and hence, <span class="math inline">\(x^{\prime}\)</span>) alternates signs on the intervals bordered by the fixed points.</li>
+<li>To get the sketch of the space-time diagram, we actually need to know the fixed points and how <span class="math inline">\(f(x)\)</span> (and hence, <span class="math inline">\(x^{\prime}\)</span></li>
 </ul>
+<p>) alternates signs on the intervals bordered by the fixed points.</p>
 <div class="child callout callout-style-simple callout-warning no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -529,18 +533,18 @@ x'=f(x).
 <li><p>Therefore, a point always moves away from an unstable fixed point, and it always move towards a stable fixed point.</p></li>
 <li><p>However, the point will never reach that stable fixed point (because of the uniqueness, as fixed points correspond to solutions), nor, evidently, “jump” over it, as we consider the continuous motion.</p></li>
 <li><p>As a result, the point always remains in that interval of the phase bordered by the fixed points, where the point was at the initial time.</p></li>
-<li><p>We will denote <strong>stable</strong> and <strong>unstable</strong> fixed points by</p>
-<div class="cell" data-layout-align="center">
+<li><p>We will denote <strong>stable</strong> and <strong>unstable</strong> fixed points by</p></li>
+</ul>
+<div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-7-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-7-8-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>respectively.</p></li>
-</ul>
+<p>respectively.</p>
 <div class="child callout callout-style-simple callout-warning no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -804,35 +808,31 @@ e^{4 t}\to\frac{x_0-2}{x_0+2} {\color{RedViolet}&gt;1},
 <li><p>Let <span class="math inline">\(x'=f(x)\)</span> be a dynamical system with a smooth function <span class="math inline">\(f\)</span>.</p></li>
 <li><p>So far, we obtained the phase portrait by either solving the inequality <span class="math inline">\(f(x)&gt;0\)</span> (or <span class="math inline">\(f(x)&lt;0\)</span>) or by sketching the graph of <span class="math inline">\(f(x)\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(x_*\)</span> be a fixed point of <span class="math inline">\(x'=f(x)\)</span>, i.e.&nbsp;<span class="math inline">\(f(x_*)=0\)</span>.</p></li>
-<li><p>If <span class="math inline">\(f(x)\)</span> is <em>negative</em> from the left of <span class="math inline">\(x_*\)</span> and is <em>positive</em> from the right of <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is an <strong>unstable</strong> fixed point:</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hence <span class="math inline">\(f\)</span> is increasing around <span class="math inline">\(x_*\)</span>, therefore,</p>
-<p><span class="math display">\[
-\color{RedViolet}f'(x*)\geq 0.
-\]</span></p>
-<p>(To see why the equality is possible, think about <span class="math inline">\(f(x)=x^3\)</span>.)</p></li>
-<li><p>Similarly, if <span class="math inline">\(f(x)\)</span> is <em>positive</em> from the left of <span class="math inline">\(x_*\)</span> and is <em>negative</em> from the right of <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is an <strong>stable</strong> fixed point:</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Hence <span class="math inline">\(f\)</span> is decreasing around <span class="math inline">\(x_*\)</span>, therefore, <span class="math display">\[
-\color{RedViolet}f'(x*)\leq0.
-\]</span> (Again, the equality is possible, e.g.&nbsp;for <span class="math inline">\(f(x)=-x^3\)</span>.)</p></li>
+<li><p>If <span class="math inline">\(f(x)\)</span> is <em>negative</em> from the left of <span class="math inline">\(x_*\)</span> and is <em>positive</em> from the right of <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is an <strong>unstable</strong> fixed point:</p></li>
 </ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-03_files/figure-html/tikz-16-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hence <span class="math inline">\(f\)</span> is increasing around <span class="math inline">\(x_*\)</span>, therefore, <span class="math inline">\(\color{RedViolet}f'(x*)\geq 0\)</span>. (To see why the equality is possible, think about <span class="math inline">\(f(x)=x^3\)</span>.)</p>
+<ul>
+<li>Similarly, if <span class="math inline">\(f(x)\)</span> is <em>positive</em> from the left of <span class="math inline">\(x_*\)</span> and is <em>negative</em> from the right of <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is an <strong>stable</strong> fixed point:</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="DS-Ch-03_files/figure-html/tikz-17-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hence <span class="math inline">\(f\)</span> is decreasing around <span class="math inline">\(x_*\)</span>, therefore, <span class="math inline">\(\color{RedViolet}f'(x*)\leq0\)</span>. (Again, the equality is possible, e.g.&nbsp;for <span class="math inline">\(f(x)=-x^3\)</span>.)</p>
 </div>
 </div>
 <div id="thm_critstab" class="callout callout-style-default callout-important no-icon callout-titled">
@@ -853,8 +853,8 @@ x'=f(x),
 </div>
 <p>i.e.&nbsp;let <span class="math inline">\(\color{RedViolet}f(x_*)=0\)</span>. Then</p>
 <ul>
-<li><p>if <span class="highlight" data-key="inline"><span class="math inline">\(\color{RedViolet}f'(x_*) &gt;0\)</span></span>, then <span class="math inline">\(x_*\)</span> is an <span class="inlinealert"><span class="sc"><strong>unstable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>);</p></li>
-<li><p>if <span class="highlight" data-key="inline"><span class="math inline">\(\color{RedViolet}f'(x_*) &lt; 0\)</span></span>, then <span class="math inline">\(x_*\)</span> is a <span class="inlinealert"><span class="sc"><strong>stable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>).</p></li>
+<li><p>if [<span class="math inline">\({\color{RedViolet}f'(x_*) &gt;0}\)</span>]{.highlight key = “inline”}, then <span class="math inline">\(x_*\)</span> is an <span class="inlinealert"><span class="sc"><strong>unstable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>);</p></li>
+<li><p>if [<span class="math inline">\(\color{RedViolet}f'(x_*) &lt; 0\)</span>]{.highlight key = “inline”}, then <span class="math inline">\(x_*\)</span> is a <span class="inlinealert"><span class="sc"><strong>stable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>).</p></li>
 </ul>
 </div>
 </div>
@@ -870,7 +870,7 @@ x'=f(x),
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>The mentioned above examples <span class="math inline">\(f(x)=\pm x^3\)</span> demonstrate why the conditions of <a href="#thm_critstab">Theorem 3.19</a> are sufficient, but not necessary.</p></li>
-<li><p>If <span class="math inline">\(f'(x_*)=0\)</span>, <strong>one cannot conclude anything</strong> about (un)stability of <span class="math inline">\(x_*\)</span>; one needs an additional analysis (see also <a href="#rmk_fprime0">Remark 3.27</a> below).</p></li>
+<li><p>If <span class="math inline">\(f'(x_*)=0\)</span>, <strong>one cannot conclude anything</strong> about (un)stability of <span class="math inline">\(x_*\)</span>; one needs an additional analysis (see also <a href="#rmk_fprime0">Remark <code>{r, ref.label="rmk1"} f"{rmk_fprime0[0]}.{rmk_fprime0[1]}"</code></a> below).</p></li>
 </ul>
 </div>
 </div>
@@ -1062,28 +1062,21 @@ t=t(\tau):=\frac{4}{ab} \tau.
 </div>
 <div class="callout-body-container callout-body">
 <p>If <span class="math inline">\(x_*\)</span> is a fixed point to a dynamical system <span class="math inline">\(x'=f(x)\)</span>, so that the phase portrait (the direction of motion along the phase space) is not changing around <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is called a <span class="term" data-key="fixed point!half-stable">half-stable</span> fixed point.</p>
+<div class="cell">
+<div class="cell-output-display">
 <div>
-
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-20-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-21-1.png" class="img-fluid figure-img"></p>
 </figure>
-</div>
-</div>
 </div>
 </div>
 </div>
