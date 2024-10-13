@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -68,6 +102,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -358,10 +394,7 @@ x'=f(x).
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Similarly, for a general equation <span class="math inline">\(x'=f(x)\)</span>, we are interested where <span class="math inline">\(f(x)\)</span> is positive (hence, <span class="math inline">\(x\)</span> increases), and where <span class="math inline">\(f(x)\)</span> is negative (hence, <span class="math inline">\(x\)</span> decreases).</p></li>
-<li><p>To this end, one can consider the graph of <span class="math inline">\(f(x)\)</span>. Since we are studying the equation <span class="math inline">\(x'=f(x)\)</span>, one may think about <span class="math inline">\(x^{\prime}\)</span></p></li>
-</ul>
-<p>as a function of <span class="math inline">\(x\)</span>.</p>
-<ul>
+<li><p>To this end, one can consider the graph of <span class="math inline">\(f(x)\)</span>. Since we are studying the equation <span class="math inline">\(x'=f(x)\)</span>, one may think about <span class="math inline">\(x^{\prime}\)</span> as a function of <span class="math inline">\(x\)</span>.</p></li>
 <li><p>Since <span class="math inline">\(x\)</span> “runs” over <span class="math inline">\({\mathbb{R}}\)</span> which is, recall, called the <strong>phase space</strong>, the graph of <span class="math inline">\(f(x)\)</span> on the coordinate plane <span class="math inline">\((x',x)\)</span> is called the <span class="term">phase diagram</span>.</p></li>
 <li><p>We find (all) fixed points (that are solutions to <span class="math inline">\(f(x)=0\)</span>).</p></li>
 </ul>
@@ -458,9 +491,8 @@ x'=f(x).
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>To get the sketch of the space-time diagram, we actually need to know the fixed points and how <span class="math inline">\(f(x)\)</span> (and hence, <span class="math inline">\(x^{\prime}\)</span></li>
+<li>To get the sketch of the space-time diagram, we actually need to know the fixed points and how <span class="math inline">\(f(x)\)</span> (and hence, <span class="math inline">\(x^{\prime}\)</span>) alternates signs on the intervals bordered by the fixed points.</li>
 </ul>
-<p>) alternates signs on the intervals bordered by the fixed points.</p>
 <div class="child callout callout-style-simple callout-warning no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -535,11 +567,11 @@ x'=f(x).
 <li><p>As a result, the point always remains in that interval of the phase bordered by the fixed points, where the point was at the initial time.</p></li>
 <li><p>We will denote <strong>stable</strong> and <strong>unstable</strong> fixed points by</p></li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-7-8-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-7-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -810,29 +842,35 @@ e^{4 t}\to\frac{x_0-2}{x_0+2} {\color{RedViolet}&gt;1},
 <li><p>Let <span class="math inline">\(x_*\)</span> be a fixed point of <span class="math inline">\(x'=f(x)\)</span>, i.e.&nbsp;<span class="math inline">\(f(x_*)=0\)</span>.</p></li>
 <li><p>If <span class="math inline">\(f(x)\)</span> is <em>negative</em> from the left of <span class="math inline">\(x_*\)</span> and is <em>positive</em> from the right of <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is an <strong>unstable</strong> fixed point:</p></li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-16-1.png" class="img-fluid figure-img"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Hence <span class="math inline">\(f\)</span> is increasing around <span class="math inline">\(x_*\)</span>, therefore, <span class="math inline">\(\color{RedViolet}f'(x*)\geq 0\)</span>. (To see why the equality is possible, think about <span class="math inline">\(f(x)=x^3\)</span>.)</p>
+<p>Hence <span class="math inline">\(f\)</span> is increasing around <span class="math inline">\(x_*\)</span>, therefore,</p>
+<p><span class="math display">\[
+  \color{RedViolet}f'(x*)\geq 0.
+  \]</span></p>
+<p>(To see why the equality is possible, think about <span class="math inline">\(f(x)=x^3\)</span>.)</p>
 <ul>
 <li>Similarly, if <span class="math inline">\(f(x)\)</span> is <em>positive</em> from the left of <span class="math inline">\(x_*\)</span> and is <em>negative</em> from the right of <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is an <strong>stable</strong> fixed point:</li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-17-1.png" class="img-fluid figure-img"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Hence <span class="math inline">\(f\)</span> is decreasing around <span class="math inline">\(x_*\)</span>, therefore, <span class="math inline">\(\color{RedViolet}f'(x*)\leq0\)</span>. (Again, the equality is possible, e.g.&nbsp;for <span class="math inline">\(f(x)=-x^3\)</span>.)</p>
+<p>Hence <span class="math inline">\(f\)</span> is decreasing around <span class="math inline">\(x_*\)</span>, therefore, <span class="math display">\[
+  \color{RedViolet}f'(x*)\leq0.
+  \]</span> (Again, the equality is possible, e.g.&nbsp;for <span class="math inline">\(f(x)=-x^3\)</span>.)</p>
 </div>
 </div>
 <div id="thm_critstab" class="callout callout-style-default callout-important no-icon callout-titled">
@@ -853,8 +891,8 @@ x'=f(x),
 </div>
 <p>i.e.&nbsp;let <span class="math inline">\(\color{RedViolet}f(x_*)=0\)</span>. Then</p>
 <ul>
-<li><p>if [<span class="math inline">\({\color{RedViolet}f'(x_*) &gt;0}\)</span>]{.highlight key = “inline”}, then <span class="math inline">\(x_*\)</span> is an <span class="inlinealert"><span class="sc"><strong>unstable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>);</p></li>
-<li><p>if [<span class="math inline">\(\color{RedViolet}f'(x_*) &lt; 0\)</span>]{.highlight key = “inline”}, then <span class="math inline">\(x_*\)</span> is a <span class="inlinealert"><span class="sc"><strong>stable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>).</p></li>
+<li><p>if <span class="highlight" data-key="inline"><span class="math inline">\(\color{RedViolet}f'(x_*) &gt;0\)</span></span>, then <span class="math inline">\(x_*\)</span> is an <span class="inlinealert"><span class="sc"><strong>unstable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>);</p></li>
+<li><p>if <span class="highlight" data-key="inline"><span class="math inline">\(\color{RedViolet}f'(x_*) &lt; 0\)</span></span>, then <span class="math inline">\(x_*\)</span> is a <span class="inlinealert"><span class="sc"><strong>stable</strong></span> <strong>fixed point</strong></span> of (<a href="#eq-ds1again" class="quarto-xref"><span>3.6</span></a>).</p></li>
 </ul>
 </div>
 </div>
@@ -870,7 +908,7 @@ x'=f(x),
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>The mentioned above examples <span class="math inline">\(f(x)=\pm x^3\)</span> demonstrate why the conditions of <a href="#thm_critstab">Theorem 3.19</a> are sufficient, but not necessary.</p></li>
-<li><p>If <span class="math inline">\(f'(x_*)=0\)</span>, <strong>one cannot conclude anything</strong> about (un)stability of <span class="math inline">\(x_*\)</span>; one needs an additional analysis (see also <a href="#rmk_fprime0">Remark <code>{r, ref.label="rmk1"} f"{rmk_fprime0[0]}.{rmk_fprime0[1]}"</code></a> below).</p></li>
+<li><p>If <span class="math inline">\(f'(x_*)=0\)</span>, <strong>one cannot conclude anything</strong> about (un)stability of <span class="math inline">\(x_*\)</span>; one needs an additional analysis (see also <a href="#rmk_fprime0">Remark 3.27</a> below).</p></li>
 </ul>
 </div>
 </div>
@@ -1051,6 +1089,150 @@ t=t(\tau):=\frac{4}{ab} \tau.
 <p>Recall that in the Malthus equation <span class="math inline">\(x'=rx\)</span> the <strong>non-negative</strong> solutions, as <span class="math inline">\(t\to\infty\)</span>, may <em>either</em> converge to <span class="math inline">\(+\infty\)</span> (when <span class="math inline">\(r&gt;0\)</span>, demonstrating that the population growth without any bounds) <em>or</em> converge to <span class="math inline">\(0\)</span> (when <span class="math inline">\(r&lt;0\)</span> demonstrating that the population extincts). In the logistic equation (<a href="#eq-log" class="quarto-xref"><span>3.7</span></a>) (called also the Verhulst equation), the population stabilises, converging to <span class="math inline">\(b\)</span>.</p>
 </div>
 </div>
+<div class="interactive">
+<p>If we know that a function <span class="math inline">\(g(x)\)</span> is strictly positive on interval <span class="math inline">\((a,b)\)</span>, i.e.&nbsp;<span class="math inline">\(g(x)&gt;0\)</span>, <span class="math inline">\(x\in(a,b)\)</span>, then the dynamical systems <span class="math inline">\(x'=f(x)\)</span> and <span class="math inline">\(x'=f(x)g(x)\)</span> have the same phase portraits. In particular, the trajectories on the space-time diagrams for these systems will be quite “similar”.</p>
+<p>Below are the graphs of trajectories of the dynamical systems</p>
+<p><span class="math display">\[
+{x'=x(1-x)}, \qquad {\color{blue}x' = x(1-x)(2+\sin x)^k}, \qquad {\color{red}x'=x(1-x)(1+x^2)^k}
+\]</span></p>
+<p>for <span class="math inline">\(k\in\{-3,-2,-1,0,1,2,3\}\)</span> (note that, for <span class="math inline">\(k=0\)</span>, the dynamical systems coincide). For each system, we consider two trajectories, with initial conditions <span class="math inline">\(x(0)=0.5\)</span> and <span class="math inline">\(x(0)=1.5\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="1345" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1344;"><span id="cb1-1345"><a href="#cb1-1345" aria-hidden="true" tabindex="-1"></a>viewof k <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb1-1346"><a href="#cb1-1346" aria-hidden="true" tabindex="-1"></a>  [<span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> </span>
+<span id="cb1-1347"><a href="#cb1-1347" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span> <span class="vs">`k`</span>}</span>
+<span id="cb1-1348"><a href="#cb1-1348" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="1356" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1355;"><span id="cb2-1356"><a href="#cb2-1356" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">euler</span>(ode<span class="op">,</span> t0<span class="op">,</span> x0<span class="op">,</span> h<span class="op">,</span> tmax) {</span>
+<span id="cb2-1357"><a href="#cb2-1357" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> result <span class="op">=</span> [{ <span class="dt">t</span><span class="op">:</span> t0<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> x0 }]<span class="op">;</span></span>
+<span id="cb2-1358"><a href="#cb2-1358" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> t <span class="op">=</span> t0<span class="op">;</span></span>
+<span id="cb2-1359"><a href="#cb2-1359" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> x0<span class="op">;</span></span>
+<span id="cb2-1360"><a href="#cb2-1360" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (t <span class="op">&lt;</span> tmax) {</span>
+<span id="cb2-1361"><a href="#cb2-1361" aria-hidden="true" tabindex="-1"></a>        x <span class="op">+=</span> h <span class="op">*</span> <span class="fu">ode</span>(t<span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb2-1362"><a href="#cb2-1362" aria-hidden="true" tabindex="-1"></a>        t <span class="op">+=</span> h<span class="op">;</span></span>
+<span id="cb2-1363"><a href="#cb2-1363" aria-hidden="true" tabindex="-1"></a>        result<span class="op">.</span><span class="fu">push</span>({ <span class="dt">t</span><span class="op">:</span> t<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> x })<span class="op">;</span></span>
+<span id="cb2-1364"><a href="#cb2-1364" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-1365"><a href="#cb2-1365" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb2-1366"><a href="#cb2-1366" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-1367"><a href="#cb2-1367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1368"><a href="#cb2-1368" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">genLogisticEqn</span>(t0<span class="op">,</span> x0<span class="op">,</span> x1){</span>
+<span id="cb2-1369"><a href="#cb2-1369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1370"><a href="#cb2-1370" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> tmax <span class="op">=</span> <span class="dv">5</span> </span>
+<span id="cb2-1371"><a href="#cb2-1371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1372"><a href="#cb2-1372" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (k<span class="op">&lt;</span><span class="dv">0</span>){</span>
+<span id="cb2-1373"><a href="#cb2-1373" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> tmax <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(k)</span>
+<span id="cb2-1374"><a href="#cb2-1374" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-1375"><a href="#cb2-1375" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb2-1376"><a href="#cb2-1376" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> tmax <span class="op">=</span> <span class="dv">5</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(k)</span>
+<span id="cb2-1377"><a href="#cb2-1377" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-1378"><a href="#cb2-1378" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-1379"><a href="#cb2-1379" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-1380"><a href="#cb2-1380" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> dt <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb2-1381"><a href="#cb2-1381" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-1382"><a href="#cb2-1382" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">eqn0</span>(t<span class="op">,</span> x) {</span>
+<span id="cb2-1383"><a href="#cb2-1383" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x)<span class="op">;</span></span>
+<span id="cb2-1384"><a href="#cb2-1384" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-1385"><a href="#cb2-1385" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-1386"><a href="#cb2-1386" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">eqn1</span>(t<span class="op">,</span> x) {</span>
+<span id="cb2-1387"><a href="#cb2-1387" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x)<span class="op">*</span>((<span class="dv">2</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(x))<span class="op">**</span>k)<span class="op">;</span></span>
+<span id="cb2-1388"><a href="#cb2-1388" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-1389"><a href="#cb2-1389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1390"><a href="#cb2-1390" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">eqn2</span>(t<span class="op">,</span> x) {</span>
+<span id="cb2-1391"><a href="#cb2-1391" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x)<span class="op">*</span>((<span class="dv">1</span> <span class="op">+</span> x<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span>k)<span class="op">;</span></span>
+<span id="cb2-1392"><a href="#cb2-1392" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-1393"><a href="#cb2-1393" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-1394"><a href="#cb2-1394" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Solve the ODE using Euler's method</span></span>
+<span id="cb2-1395"><a href="#cb2-1395" aria-hidden="true" tabindex="-1"></a>  <span class="co">// let solution0 = euler(eqn0, t0, x0, dt, tmax);</span></span>
+<span id="cb2-1396"><a href="#cb2-1396" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> values0 <span class="op">=</span> <span class="fu">euler</span>(eqn0<span class="op">,</span> t0<span class="op">,</span> x0<span class="op">,</span> dt<span class="op">,</span> tmax)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> [a<span class="op">.</span><span class="at">t</span><span class="op">,</span> a<span class="op">.</span><span class="at">x</span>])<span class="op">;</span></span>
+<span id="cb2-1397"><a href="#cb2-1397" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> values1 <span class="op">=</span> <span class="fu">euler</span>(eqn1<span class="op">,</span> t0<span class="op">,</span> x0<span class="op">,</span> dt<span class="op">,</span> tmax)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> [a<span class="op">.</span><span class="at">t</span><span class="op">,</span> a<span class="op">.</span><span class="at">x</span>])<span class="op">;</span></span>
+<span id="cb2-1398"><a href="#cb2-1398" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> values2 <span class="op">=</span> <span class="fu">euler</span>(eqn2<span class="op">,</span> t0<span class="op">,</span> x0<span class="op">,</span> dt<span class="op">,</span> tmax)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> [a<span class="op">.</span><span class="at">t</span><span class="op">,</span> a<span class="op">.</span><span class="at">x</span>])<span class="op">;</span>  </span>
+<span id="cb2-1399"><a href="#cb2-1399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1400"><a href="#cb2-1400" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> values01 <span class="op">=</span> <span class="fu">euler</span>(eqn0<span class="op">,</span> t0<span class="op">,</span> x1<span class="op">,</span> dt<span class="op">,</span> tmax)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> [a<span class="op">.</span><span class="at">t</span><span class="op">,</span> a<span class="op">.</span><span class="at">x</span>])<span class="op">;</span></span>
+<span id="cb2-1401"><a href="#cb2-1401" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> values11 <span class="op">=</span> <span class="fu">euler</span>(eqn1<span class="op">,</span> t0<span class="op">,</span> x1<span class="op">,</span> dt<span class="op">,</span> tmax)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> [a<span class="op">.</span><span class="at">t</span><span class="op">,</span> a<span class="op">.</span><span class="at">x</span>])<span class="op">;</span></span>
+<span id="cb2-1402"><a href="#cb2-1402" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> values21 <span class="op">=</span> <span class="fu">euler</span>(eqn2<span class="op">,</span> t0<span class="op">,</span> x1<span class="op">,</span> dt<span class="op">,</span> tmax)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> [a<span class="op">.</span><span class="at">t</span><span class="op">,</span> a<span class="op">.</span><span class="at">x</span>])<span class="op">;</span> </span>
+<span id="cb2-1403"><a href="#cb2-1403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1404"><a href="#cb2-1404" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> tmin <span class="op">=</span> t0 <span class="op">-</span> <span class="fl">0.01</span><span class="op">*</span>tmax<span class="op">;</span></span>
+<span id="cb2-1405"><a href="#cb2-1405" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> xmax <span class="op">=</span> <span class="fl">1.8</span><span class="op">;</span></span>
+<span id="cb2-1406"><a href="#cb2-1406" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-1407"><a href="#cb2-1407" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-1408"><a href="#cb2-1408" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">domain</span><span class="op">:</span> [tmin<span class="op">,</span> tmax] }<span class="op">,</span></span>
+<span id="cb2-1409"><a href="#cb2-1409" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span>xmax] }<span class="op">,</span></span>
+<span id="cb2-1410"><a href="#cb2-1410" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span></span>
+<span id="cb2-1411"><a href="#cb2-1411" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">240</span><span class="op">,</span></span>
+<span id="cb2-1412"><a href="#cb2-1412" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-1413"><a href="#cb2-1413" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-1414"><a href="#cb2-1414" aria-hidden="true" tabindex="-1"></a>      values0<span class="op">,</span></span>
+<span id="cb2-1415"><a href="#cb2-1415" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-1416"><a href="#cb2-1416" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span></span>
+<span id="cb2-1417"><a href="#cb2-1417" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb2-1418"><a href="#cb2-1418" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-1419"><a href="#cb2-1419" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-1420"><a href="#cb2-1420" aria-hidden="true" tabindex="-1"></a>      values01<span class="op">,</span></span>
+<span id="cb2-1421"><a href="#cb2-1421" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-1422"><a href="#cb2-1422" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"black"</span><span class="op">,</span></span>
+<span id="cb2-1423"><a href="#cb2-1423" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb2-1424"><a href="#cb2-1424" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-1425"><a href="#cb2-1425" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-1426"><a href="#cb2-1426" aria-hidden="true" tabindex="-1"></a>      values1<span class="op">,</span></span>
+<span id="cb2-1427"><a href="#cb2-1427" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-1428"><a href="#cb2-1428" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span><span class="op">,</span></span>
+<span id="cb2-1429"><a href="#cb2-1429" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb2-1430"><a href="#cb2-1430" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-1431"><a href="#cb2-1431" aria-hidden="true" tabindex="-1"></a>     Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-1432"><a href="#cb2-1432" aria-hidden="true" tabindex="-1"></a>      values11<span class="op">,</span></span>
+<span id="cb2-1433"><a href="#cb2-1433" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-1434"><a href="#cb2-1434" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"blue"</span><span class="op">,</span></span>
+<span id="cb2-1435"><a href="#cb2-1435" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb2-1436"><a href="#cb2-1436" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-1437"><a href="#cb2-1437" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-1438"><a href="#cb2-1438" aria-hidden="true" tabindex="-1"></a>      values2<span class="op">,</span></span>
+<span id="cb2-1439"><a href="#cb2-1439" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-1440"><a href="#cb2-1440" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span></span>
+<span id="cb2-1441"><a href="#cb2-1441" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb2-1442"><a href="#cb2-1442" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-1443"><a href="#cb2-1443" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(</span>
+<span id="cb2-1444"><a href="#cb2-1444" aria-hidden="true" tabindex="-1"></a>      values21<span class="op">,</span></span>
+<span id="cb2-1445"><a href="#cb2-1445" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-1446"><a href="#cb2-1446" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span></span>
+<span id="cb2-1447"><a href="#cb2-1447" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb2-1448"><a href="#cb2-1448" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-1449"><a href="#cb2-1449" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb2-1450"><a href="#cb2-1450" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb2-1451"><a href="#cb2-1451" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">axisX</span>({ <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span> })<span class="op">,</span></span>
+<span id="cb2-1452"><a href="#cb2-1452" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">axisY</span>({ <span class="dt">x</span><span class="op">:</span> <span class="dv">0</span> })</span>
+<span id="cb2-1453"><a href="#cb2-1453" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-1454"><a href="#cb2-1454" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-1455"><a href="#cb2-1455" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb2-1456"><a href="#cb2-1456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-1457"><a href="#cb2-1457" aria-hidden="true" tabindex="-1"></a><span class="fu">genLogisticEqn</span>(<span class="dv">0</span><span class="op">,</span><span class="fl">0.5</span><span class="op">,</span><span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1062,21 +1244,28 @@ t=t(\tau):=\frac{4}{ab} \tau.
 </div>
 <div class="callout-body-container callout-body">
 <p>If <span class="math inline">\(x_*\)</span> is a fixed point to a dynamical system <span class="math inline">\(x'=f(x)\)</span>, so that the phase portrait (the direction of motion along the phase space) is not changing around <span class="math inline">\(x_*\)</span>, then <span class="math inline">\(x_*\)</span> is called a <span class="term" data-key="fixed point!half-stable">half-stable</span> fixed point.</p>
-<div class="cell">
-<div class="cell-output-display">
 <div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-20-1.png" class="img-fluid figure-img"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DS-Ch-03_files/figure-html/tikz-21-1.png" class="img-fluid figure-img"></p>
+<p><img src="DS-Ch-03_files/figure-html/tikz-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1247,6 +1436,17 @@ y' =\frac{1}{m}F(x,y).
 
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIGsgPSBJbnB1dHMucmFuZ2UoXG4gIFstMywgM10sIFxuICB7dmFsdWU6IDAsIHN0ZXA6IDEsIGxhYmVsOiB0ZXggYGtgfVxuKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbmZ1bmN0aW9uIGV1bGVyKG9kZSwgdDAsIHgwLCBoLCB0bWF4KSB7XG4gICAgbGV0IHJlc3VsdCA9IFt7IHQ6IHQwLCB4OiB4MCB9XTtcbiAgICBsZXQgdCA9IHQwO1xuICAgIGxldCB4ID0geDA7XG4gICAgd2hpbGUgKHQgPCB0bWF4KSB7XG4gICAgICAgIHggKz0gaCAqIG9kZSh0LCB4KTtcbiAgICAgICAgdCArPSBoO1xuICAgICAgICByZXN1bHQucHVzaCh7IHQ6IHQsIHg6IHggfSk7XG4gICAgfVxuICAgIHJldHVybiByZXN1bHQ7XG59XG5cbmZ1bmN0aW9uIGdlbkxvZ2lzdGljRXFuKHQwLCB4MCwgeDEpe1xuXG4gIGxldCB0bWF4ID0gNSBcblxuICBpZiAoazwwKXtcbiAgICBsZXQgdG1heCA9IDUgKiBNYXRoLmFicyhrKVxuICB9XG4gIGVsc2Uge1xuICAgIGxldCB0bWF4ID0gNSAvIE1hdGguYWJzKGspXG4gIH1cbiAgXG4gIFxuICBsZXQgZHQgPSAwLjAxXG4gIFxuICBmdW5jdGlvbiBlcW4wKHQsIHgpIHtcbiAgICAgIHJldHVybiB4KigxLXgpO1xuICB9XG4gIFxuICBmdW5jdGlvbiBlcW4xKHQsIHgpIHtcbiAgICAgIHJldHVybiB4KigxLXgpKigoMiArIE1hdGguc2luKHgpKSoqayk7XG4gIH1cblxuICBmdW5jdGlvbiBlcW4yKHQsIHgpIHtcbiAgICAgIHJldHVybiB4KigxLXgpKigoMSArIHgqKjIpKiprKTtcbiAgfVxuICBcbiAgLy8gU29sdmUgdGhlIE9ERSB1c2luZyBFdWxlcidzIG1ldGhvZFxuICAvLyBsZXQgc29sdXRpb24wID0gZXVsZXIoZXFuMCwgdDAsIHgwLCBkdCwgdG1heCk7XG4gIGxldCB2YWx1ZXMwID0gZXVsZXIoZXFuMCwgdDAsIHgwLCBkdCwgdG1heCkubWFwKGEgPT4gW2EudCwgYS54XSk7XG4gIGxldCB2YWx1ZXMxID0gZXVsZXIoZXFuMSwgdDAsIHgwLCBkdCwgdG1heCkubWFwKGEgPT4gW2EudCwgYS54XSk7XG4gIGxldCB2YWx1ZXMyID0gZXVsZXIoZXFuMiwgdDAsIHgwLCBkdCwgdG1heCkubWFwKGEgPT4gW2EudCwgYS54XSk7ICBcblxuICBsZXQgdmFsdWVzMDEgPSBldWxlcihlcW4wLCB0MCwgeDEsIGR0LCB0bWF4KS5tYXAoYSA9PiBbYS50LCBhLnhdKTtcbiAgbGV0IHZhbHVlczExID0gZXVsZXIoZXFuMSwgdDAsIHgxLCBkdCwgdG1heCkubWFwKGEgPT4gW2EudCwgYS54XSk7XG4gIGxldCB2YWx1ZXMyMSA9IGV1bGVyKGVxbjIsIHQwLCB4MSwgZHQsIHRtYXgpLm1hcChhID0+IFthLnQsIGEueF0pOyBcblxuICBsZXQgdG1pbiA9IHQwIC0gMC4wMSp0bWF4O1xuICBsZXQgeG1heCA9IDEuODtcbiAgXG4gIHJldHVybiBQbG90LnBsb3Qoe1xuICAgIHg6IHsgZG9tYWluOiBbdG1pbiwgdG1heF0gfSxcbiAgICB5OiB7IGRvbWFpbjogWzAseG1heF0gfSxcbiAgICB3aWR0aDogNjQwLFxuICAgIGhlaWdodDogMjQwLFxuICAgIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKFxuICAgICAgdmFsdWVzMCxcbiAgICAgIHtcbiAgICAgICAgc3Ryb2tlOiBcImJsYWNrXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyXG4gICAgICB9KSxcbiAgICBQbG90LmxpbmUoXG4gICAgICB2YWx1ZXMwMSxcbiAgICAgIHtcbiAgICAgICAgc3Ryb2tlOiBcImJsYWNrXCIsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAyXG4gICAgICB9KSxcbiAgICBQbG90LmxpbmUoXG4gICAgICB2YWx1ZXMxLFxuICAgICAge1xuICAgICAgICBzdHJva2U6IFwiYmx1ZVwiLFxuICAgICAgICBzdHJva2VXaWR0aDogMlxuICAgICAgfSksXG4gICAgIFBsb3QubGluZShcbiAgICAgIHZhbHVlczExLFxuICAgICAge1xuICAgICAgICBzdHJva2U6IFwiYmx1ZVwiLFxuICAgICAgICBzdHJva2VXaWR0aDogMlxuICAgICAgfSksXG4gICAgUGxvdC5saW5lKFxuICAgICAgdmFsdWVzMixcbiAgICAgIHtcbiAgICAgICAgc3Ryb2tlOiBcInJlZFwiLFxuICAgICAgICBzdHJva2VXaWR0aDogMlxuICAgICAgfSksXG4gICAgUGxvdC5saW5lKFxuICAgICAgdmFsdWVzMjEsXG4gICAgICB7XG4gICAgICAgIHN0cm9rZTogXCJyZWRcIixcbiAgICAgICAgc3Ryb2tlV2lkdGg6IDJcbiAgICAgIH0pLFxuICAgIFBsb3QucnVsZVgoWzBdKSxcbiAgICBQbG90LnJ1bGVZKFswXSksXG4gICAgUGxvdC5heGlzWCh7IHk6IDAgfSksXG4gICAgUGxvdC5heGlzWSh7IHg6IDAgfSlcbiAgICBdXG4gIH0pXG59IFxuXG5nZW5Mb2dpc3RpY0VxbigwLDAuNSwxLjUpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2snKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
