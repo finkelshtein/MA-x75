@@ -182,8 +182,13 @@ figcaption{
  }
 
 .interactive {
-  border-width: 0pt;
-  width: 80%;
+  border-left-width: 5pt;
+  border-right-width: 2pt;
+  border-top-width: 2pt;
+  border-bottom-width: 2pt;
+  border-style: dashed;
+  border-color: coral;
+  width: 100%;
   margin: auto;
   background-color: rgb(from var(--callout-warning-color) r g b / 0.1);
   padding: 1em;
